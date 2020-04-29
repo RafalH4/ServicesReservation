@@ -11,13 +11,11 @@ namespace WebApi.ServiceDirectory
     {
         public Guid Id { get; set; }
         public string ServiceName { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public DateTime Date { get; set; }
         public DateTime DateOfReservation { get; set; }
         public UserAdmin CreatedBy { get; set; }
         public UserAdmin ServiceProvider { get; set; }
         public UserClient Client { get; set; }
-        public Guid ClientId { get; set; }
         public float FullPrice { get; set; }
         public float Advance { get; set; }
         public float LeftToPay { get; set; }

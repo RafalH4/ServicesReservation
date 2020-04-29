@@ -13,6 +13,8 @@ namespace WebApi.ServiceDirectory.Dtos
         public int EndHour { get; set; }
         public int EndMinute { get; set; }
         public int RangeInMinutes { get; set; }
+        public string ServiceName { get; set; }
+        public float FullPrice { get; set; }
         public Guid ServiceProviderId { get; set; }
         public Guid ClientId { get; set; }
 

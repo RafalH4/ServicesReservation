@@ -3,19 +3,67 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi.ServiceDirectory.Dtos;
+using WebApi.UserDirectory;
 
 namespace WebApi.ServiceDirectory
 {
     public class ServiceService : IServiceService
     {
-        public Task AddClinetToService(Guid serviceId, Guid ClientId)
+        private readonly IServiceRepository _serviceRepsitory;
+        private readonly IUserRepository _userRepository;
+
+        public ServiceService(IServiceRepository serviceRepsitory,
+            IUserRepository userRepository)
         {
-            throw new NotImplementedException();
+            _serviceRepsitory = serviceRepsitory;
+            _userRepository = userRepository;
+        }
+        public async Task AddClinetToService(Guid serviceId, Guid ClientId)
+        {
+            var service = await _serviceRepsitory.GetService(serviceId);
+            if (service == null)
+                throw new Exception("Bad service ID");
+
+            if (service.Client != null)
+                throw new Exception("This service has Client");
+
+            var user = await _userRepository.GetUserById(ClientId);
+            if (user == null)
+                throw new Exception("Bad userId");
+
+            service.Client = (UserClient)user;
+            service.DateOfReservation = DateTime.Now;
+
+            await _serviceRepsitory.UpdateService(service);
         }
 
-        public Task AddServices(CreateServiceDto servicesData)
+        public async Task AddServices(CreateServiceDto servicesData, Guid adminId)
         {
-            throw new NotImplementedException();
+            var adminUser = await _userRepository.GetUserById(adminId);
+            var serviceProvider = await _userRepository.GetUserById(servicesData.ServiceProviderId);
+            List<Service> services = new List<Service>();
+
+            servicesData.Dates.ForEach(date =>
+            {
+                var startDate = date.AddHours(servicesData.StartHour)
+                                    .AddMinutes(servicesData.StartMinute);
+                var endDate = date.AddHours(servicesData.EndHour)
+                                   .AddMinutes(servicesData.EndMinute);
+
+                for(DateTime tempTime = startDate; tempTime<=endDate; tempTime.AddMinutes(servicesData.RangeInMinutes))
+                {
+                    services.Add(new Service
+                    {
+                        Id = Guid.NewGuid(),
+                        ServiceName = servicesData.ServiceName,
+                        Date = tempTime,
+                        CreatedBy = (UserAdmin)adminUser,
+                        ServiceProvider = (UserAdmin)serviceProvider,
+                        FullPrice = servicesData.FullPrice
+                    });
+                }
+
+            });
         }
 
         public Task GetClientServices(Guid clientId)

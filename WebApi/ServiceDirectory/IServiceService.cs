@@ -8,7 +8,7 @@ namespace WebApi.ServiceDirectory
 {
     public interface IServiceService
     {
-        public Task AddServices(CreateServiceDto servicesData);
+        public Task AddServices(CreateServiceDto servicesData, Guid adminId);
         public Task AddClinetToService(Guid serviceId, Guid ClientId);
         public Task GetServices(
             DateTime? startDate,
