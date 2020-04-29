@@ -20,6 +20,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using WebApi.DataContext;
 using WebApi.Helpers;
+using WebApi.ServiceDirectory;
 using WebApi.UserDirectory;
 
 namespace WebApi
@@ -64,6 +65,8 @@ namespace WebApi
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IServiceRepository, ServiceRepository>();
+            services.AddScoped<IServiceService, ServiceService>();
             services.AddScoped<IJwtHandler, JwtHandler>();
 
         }
