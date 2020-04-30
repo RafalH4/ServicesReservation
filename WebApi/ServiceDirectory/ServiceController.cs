@@ -22,10 +22,11 @@ namespace WebApi.ServiceDirectory
         [HttpPost("AddService")]
         public async Task<IActionResult> AddService([FromBody]CreateServiceDto createService)
         {
+            await _serviceService.AddServices(createService, CurrentUserId);
             return Ok();
         }
 
-        //Dorobić parametry
+        //Dorobić parametry/filtry
         [HttpGet("GetServices")]
         public async Task<IActionResult> GetService()
         {

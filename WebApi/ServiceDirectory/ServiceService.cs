@@ -49,8 +49,9 @@ namespace WebApi.ServiceDirectory
                                     .AddMinutes(servicesData.StartMinute);
                 var endDate = date.AddHours(servicesData.EndHour)
                                    .AddMinutes(servicesData.EndMinute);
+                
 
-                for(DateTime tempTime = startDate; tempTime<=endDate; tempTime.AddMinutes(servicesData.RangeInMinutes))
+                for(DateTime tempTime = startDate; tempTime<=endDate; tempTime = tempTime.AddMinutes(servicesData.RangeInMinutes))
                 {
                     services.Add(new Service
                     {
@@ -60,10 +61,13 @@ namespace WebApi.ServiceDirectory
                         CreatedBy = (UserAdmin)adminUser,
                         ServiceProvider = (UserAdmin)serviceProvider,
                         FullPrice = servicesData.FullPrice
+                      
                     });
                 }
+                
 
             });
+            await _serviceRepsitory.AddListServices(services);
         }
 
         public Task GetClientServices(Guid clientId)
@@ -76,9 +80,9 @@ namespace WebApi.ServiceDirectory
             throw new NotImplementedException();
         }
 
-        public Task GetServices(DateTime? startDate, DateTime? endDate, Guid? clientId, Guid? providerId)
+        public async Task<IEnumerable<ReturnServiceDto>> GetServices(DateTime? startDate, DateTime? endDate, Guid? clientId, Guid? providerId)
         {
-            throw new NotImplementedException();
+            var services = await _serviceRepsitory.GetServicesWithFilters(startDate, endDate, clientId, providerId)
         }
 
         public Task RemoveService(Guid id)
