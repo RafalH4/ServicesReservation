@@ -12,7 +12,7 @@ namespace WebApi.ServiceDirectory.Dtos
         public string ServiceName { get; set; }
         public DateTime Date { get; set; }
         public DateTime DateOfReservation { get; set; }
-        public string ProciderFullName { get; set; }
+        public string ProviderFullName { get; set; }
         public string ClientFullName { get; set; }
         public float Advance { get; set; }
         public float LeftToPay { get; set; }

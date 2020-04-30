@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http.ExceptionHandling;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -62,7 +63,13 @@ namespace WebApi
                 opt.AddPolicy("client", policy => policy.RequireRole("client"));
             });
 
+            var autoMapperConfig = new MapperConfiguration(opt => {
+                opt.AddProfile(new AutoMapping());
+            });
 
+            IMapper mapper = autoMapperConfig.CreateMapper();
+
+            services.AddSingleton(mapper);
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IServiceRepository, ServiceRepository>();

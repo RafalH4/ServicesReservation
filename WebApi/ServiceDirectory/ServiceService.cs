@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,12 +12,15 @@ namespace WebApi.ServiceDirectory
     {
         private readonly IServiceRepository _serviceRepsitory;
         private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
 
         public ServiceService(IServiceRepository serviceRepsitory,
-            IUserRepository userRepository)
+            IUserRepository userRepository,
+            IMapper mapper)
         {
             _serviceRepsitory = serviceRepsitory;
             _userRepository = userRepository;
+            _mapper = mapper;
         }
         public async Task AddClinetToService(Guid serviceId, Guid ClientId)
         {
@@ -82,7 +86,8 @@ namespace WebApi.ServiceDirectory
 
         public async Task<IEnumerable<ReturnServiceDto>> GetServices(DateTime? startDate, DateTime? endDate, Guid? clientId, Guid? providerId)
         {
-            var services = await _serviceRepsitory.GetServicesWithFilters(startDate, endDate, clientId, providerId)
+            var services = await _serviceRepsitory.GetServicesWithFilters(startDate, endDate, clientId, providerId);
+            return _mapper.Map<IEnumerable<Service>, List<ReturnServiceDto>>(services);
         }
 
         public Task RemoveService(Guid id)

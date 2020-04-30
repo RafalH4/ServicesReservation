@@ -9,7 +9,7 @@ using WebApi.ServiceDirectory.Dtos;
 
 namespace WebApi.ServiceDirectory
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ServiceController : ApiBaseController
     {
@@ -28,9 +28,10 @@ namespace WebApi.ServiceDirectory
 
         //Dorobić parametry/filtry
         [HttpGet("GetServices")]
-        public async Task<IActionResult> GetService()
+        public async Task<IActionResult> GetServices()
         {
-            return Ok();
+            var services = await _serviceService.GetServices(null, null, null, null);
+            return Ok(services);
         }
 
         [HttpGet("GetFreeServices")]
