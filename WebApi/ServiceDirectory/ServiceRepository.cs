@@ -30,11 +30,21 @@ namespace WebApi.ServiceDirectory
         }
 
         public async Task<Service> GetService(Guid id)
-            => await Task.FromResult(_context.Services.FirstOrDefault(
-                service => service.Id == id));
+            => await Task.FromResult(_context.Services
+                .Include(x => x.Client)
+                .Include(x => x.ServiceProvider)
+                .Include(x => x.CreatedBy)
+                .FirstOrDefault(service => service.Id == id));
+
+
+
 
         public async Task<IEnumerable<Service>> GetServices()
-            => await Task.FromResult(_context.Services.ToList());
+            => await Task.FromResult(_context.Services
+                .Include(x => x.Client)
+                .Include(x => x.ServiceProvider)
+                .Include(x => x.CreatedBy)
+                .ToList());
 
         public async Task<IEnumerable<Service>> GetServicesWithFilters(DateTime? startDate, DateTime? endDate, Guid? clientId, Guid? providerId)
         {
@@ -49,9 +59,9 @@ namespace WebApi.ServiceDirectory
             if (endDate is DateTime newEndDate)
                 services = services.Where(service => DateTime.Compare(service.Date, newEndDate) <= 0).ToList();
             if (clientId is Guid newClientId)
-                services = services.Where(service => service.Client.Id == newClientId).ToList();
+                services = services.Where(service => service.Client?.Id == newClientId).ToList();
             if (providerId is Guid newProviderId)
-                services = services.Where(service => service.Client.Id == newProviderId).ToList();
+                services = services.Where(service => service.ServiceProvider?.Id == newProviderId).ToList();
             
             return services.OrderBy(d => d.Date);
         }

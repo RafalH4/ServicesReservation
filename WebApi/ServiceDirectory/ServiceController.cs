@@ -43,13 +43,21 @@ namespace WebApi.ServiceDirectory
         [HttpGet("GetMyClientsServices")]
         public async Task<IActionResult> GetClientServices()
         {
-            return Ok();
+            var services = await _serviceService.GetClientServices(CurrentUserId);
+            return Ok(services);
         }
 
         [HttpGet("GetMyProviderServices")]
         public async Task<IActionResult> GetProviderServices()
         {
             return Ok();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetService(Guid id)
+        {
+            var service = await _serviceService.GetService(id);
+            return Ok(service);
         }
     }
 }

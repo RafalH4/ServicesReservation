@@ -10,6 +10,7 @@ namespace WebApi.ServiceDirectory
     {
         public Task AddServices(CreateServiceDto servicesData, Guid adminId);
         public Task AddClinetToService(Guid serviceId, Guid ClientId);
+        public Task<ReturnServiceDetailDto> GetService(Guid id);
         public Task<IEnumerable<ReturnServiceDto>> GetServices(
             DateTime? startDate,
             DateTime? endDate,

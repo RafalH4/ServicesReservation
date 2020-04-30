@@ -86,6 +86,12 @@ namespace WebApi.ServiceDirectory
             return _mapper.Map<IEnumerable<Service>, List<ReturnServiceDto>>(services);
         }
 
+        public async Task<ReturnServiceDetailDto> GetService(Guid id)
+        {
+            var service = await _serviceRepsitory.GetService(id);
+            return _mapper.Map<Service, ReturnServiceDetailDto>(service);
+        }
+
         public async Task<IEnumerable<ReturnServiceDto>> GetServices(DateTime? startDate, DateTime? endDate, Guid? clientId, Guid? providerId)
         {
             var services = await _serviceRepsitory.GetServicesWithFilters(startDate, endDate, clientId, providerId);
@@ -118,8 +124,6 @@ namespace WebApi.ServiceDirectory
             if (service.FullPrice != null)
                 serviceToUpdate.FullPrice = (float)service.FullPrice;
             await _serviceRepsitory.UpdateService(serviceToUpdate);
-            
-
         }
     }
 }
