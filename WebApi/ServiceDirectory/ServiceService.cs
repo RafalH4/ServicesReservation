@@ -74,14 +74,16 @@ namespace WebApi.ServiceDirectory
             await _serviceRepsitory.AddListServices(services);
         }
 
-        public Task GetClientServices(Guid clientId)
+        public async Task<IEnumerable<ReturnServiceDto>> GetClientServices(Guid clientId)
         {
-            throw new NotImplementedException();
+            var services = await _serviceRepsitory.GetServicesWithFilters(null, null, clientId, null);
+            return _mapper.Map<IEnumerable<Service>, List<ReturnServiceDto>>(services);
         }
 
-        public Task GetProviderServices(Guid providerId)
+        public async Task<IEnumerable<ReturnServiceDto>> GetProviderServices(Guid providerId)
         {
-            throw new NotImplementedException();
+            var services = await _serviceRepsitory.GetServicesWithFilters(null, null, null, providerId);
+            return _mapper.Map<IEnumerable<Service>, List<ReturnServiceDto>>(services);
         }
 
         public async Task<IEnumerable<ReturnServiceDto>> GetServices(DateTime? startDate, DateTime? endDate, Guid? clientId, Guid? providerId)
@@ -90,14 +92,34 @@ namespace WebApi.ServiceDirectory
             return _mapper.Map<IEnumerable<Service>, List<ReturnServiceDto>>(services);
         }
 
-        public Task RemoveService(Guid id)
+        public async Task RemoveService(Guid id)
         {
-            throw new NotImplementedException();
+            var service = await _serviceRepsitory.GetService(id);
+            await _serviceRepsitory.RemoveService(service);
         }
 
-        public Task UpdateService(UpdateServiceDto service)
+        public async Task UpdateService(UpdateServiceDto service)
         {
-            throw new NotImplementedException();
+            var serviceToUpdate = await _serviceRepsitory.GetService(service.ServiceId);
+            if (service.ServiceName != null)
+                serviceToUpdate.ServiceName = service.ServiceName;
+            if (service.ProviderId != null)
+            {
+                var provider = await _userRepository.GetUserById(service.ProviderId);
+                if (provider != null)
+                    serviceToUpdate.ServiceProvider = (UserAdmin)provider;
+            }
+            if (service.ClientId != null)
+            {
+                var client = await _userRepository.GetUserById(service.ClientId);
+                if (client != null)
+                    serviceToUpdate.Client = (UserClient)client;
+            }
+            if (service.FullPrice != null)
+                serviceToUpdate.FullPrice = (float)service.FullPrice;
+            await _serviceRepsitory.UpdateService(serviceToUpdate);
+            
+
         }
     }
 }

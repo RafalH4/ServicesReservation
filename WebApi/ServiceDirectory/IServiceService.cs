@@ -15,8 +15,8 @@ namespace WebApi.ServiceDirectory
             DateTime? endDate,
             Guid? clientId,
             Guid? providerId);
-        public Task GetClientServices(Guid clientId);
-        public Task GetProviderServices(Guid providerId);
+        public Task<IEnumerable<ReturnServiceDto>> GetClientServices(Guid clientId);
+        public Task<IEnumerable<ReturnServiceDto>> GetProviderServices(Guid providerId);
         public Task RemoveService(Guid id);
         public Task UpdateService(UpdateServiceDto service);
     }
