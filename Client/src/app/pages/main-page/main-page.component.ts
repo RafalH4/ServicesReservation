@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceService } from 'src/app/services/service.service';
+import { Observable } from 'rxjs';
+import { ServiceDto } from 'src/app/models/service.model';
 
 @Component({
   selector: 'app-main-page',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
-  constructor() { }
+  services$: Observable<ServiceDto[]>
+
+  constructor(private _serviceService: ServiceService) { }
 
   ngOnInit(): void {
+    this._serviceService.getServices().subscribe(resp =>{
+      this.services$ = resp
+      console.log(this.services$)
+    })
   }
 
 }

@@ -1,0 +1,17 @@
+.container{
+    display: flex
+}
+
+.services{
+    display: flex;
+    flex-direction: row;
+
+    &__avaiable{
+        flex-grow: 3;
+        padding: 10px;
+    }
+    &__selected{
+        flex-grow: 1;
+        padding: 10px;
+    }
+}

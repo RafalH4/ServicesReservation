@@ -1,1 +1,11 @@
-<p>main-page works!</p>
+<div class="container">
+    <app-header></app-header>
+    <div class="services">
+        <app-avaiable-services 
+            [services]="services$"    
+            class="services__avaiable">
+        </app-avaiable-services>
+
+        <app-selected-services class="services__selected"></app-selected-services>
+    </div>
+</div>
