@@ -11,6 +11,7 @@ import { ServiceDto } from 'src/app/models/service.model';
 export class MainPageComponent implements OnInit {
 
   services$: Observable<ServiceDto[]>
+  services:Array<ServiceDto> = []
 
   constructor(private _serviceService: ServiceService) { }
 
@@ -19,6 +20,11 @@ export class MainPageComponent implements OnInit {
       this.services$ = resp
       console.log(this.services$)
     })
+  }
+
+  onSelectedService(event: ServiceDto) {
+    console.log("Wybrano: ");
+    console.log(event);
   }
 
 }

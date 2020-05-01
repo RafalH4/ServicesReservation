@@ -7,4 +7,6 @@ export interface ServiceDto{
     ClientFullName: string;
     Advance: number;
     LeftToPay: number;
+    FullPrice: number;
+    isSelected: boolean;
 }

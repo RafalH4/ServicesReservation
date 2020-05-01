@@ -16,5 +16,6 @@ namespace WebApi.ServiceDirectory.Dtos
         public string ClientFullName { get; set; }
         public float Advance { get; set; }
         public float LeftToPay { get; set; }
+        public float FullPrice { get; set; }
     }
 }

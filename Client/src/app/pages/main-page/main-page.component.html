@@ -2,7 +2,8 @@
     <app-header></app-header>
     <div class="services">
         <app-avaiable-services 
-            [services]="services$"    
+            [services]="services$"
+            (selectedService)="onSelectedService($event)"    
             class="services__avaiable">
         </app-avaiable-services>
 
