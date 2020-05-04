@@ -25,6 +25,12 @@ namespace WebApi.ServiceDirectory
             await _serviceService.AddServices(createService, CurrentUserId);
             return Ok();
         }
+        [HttpPost("BookOrder")]
+        public async Task<IActionResult> BookServices(List<Guid> idList)
+        {
+            return Ok(true);
+
+        }
 
         //Dorobić parametry/filtry
         [HttpGet("GetServices")]
@@ -59,5 +65,6 @@ namespace WebApi.ServiceDirectory
             var service = await _serviceService.GetService(id);
             return Ok(service);
         }
+
     }
 }
