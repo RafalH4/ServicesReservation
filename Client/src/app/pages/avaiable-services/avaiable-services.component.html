@@ -1,12 +1,11 @@
 <div class="services">
-    <div *ngFor="let service of services" 
-        class="services__item" 
-        (click)="selectService(service, $event)"
+    <div *ngFor="let service of services" class="services__item" (click)="selectService(service)"
         [ngClass]="service.isSelected ? 'isSelected' : 'isNotSelected'">
-            <h2>{{service.serviceName}}</h2>
-            Dzień: {{service.date | date:'dd-MM-yyyy'}}<br>
-            Godzina: {{service.date | date:'hh:mm'}}<br>
-            Usługodawca: {{service.providerFullName}}<br>
-            Cena: {{service.fullPrice}}
+        <h2>{{service.serviceName}}</h2>
+        Dzień: {{service.date | date:'dd-MM-yyyy'}}<br>
+        Godzina: {{service.date | date:'hh:mm'}}<br>
+        Usługodawca: {{service.providerFullName}}<br>
+        Cena: {{service.fullPrice}}
     </div>
+
 </div>
