@@ -1,21 +1,18 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Projekty\\ServicesReservation\\ServicesReservation\\WebApi\\WebApi.csproj": {}
+    "E:\\Projekty\\ServicesReservation\\WebApi\\WebApi.csproj": {}
   },
   "projects": {
-    "E:\\Projekty\\ServicesReservation\\ServicesReservation\\WebApi\\WebApi.csproj": {
+    "E:\\Projekty\\ServicesReservation\\WebApi\\WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Projekty\\ServicesReservation\\ServicesReservation\\WebApi\\WebApi.csproj",
+        "projectUniqueName": "E:\\Projekty\\ServicesReservation\\WebApi\\WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "E:\\Projekty\\ServicesReservation\\ServicesReservation\\WebApi\\WebApi.csproj",
+        "projectPath": "E:\\Projekty\\ServicesReservation\\WebApi\\WebApi.csproj",
         "packagesPath": "C:\\Users\\rhuk\\.nuget\\packages\\",
-        "outputPath": "E:\\Projekty\\ServicesReservation\\ServicesReservation\\WebApi\\obj\\",
+        "outputPath": "E:\\Projekty\\ServicesReservation\\WebApi\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
           "C:\\Users\\rhuk\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -25,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "http://packagesource": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -107,7 +103,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       }
     }
