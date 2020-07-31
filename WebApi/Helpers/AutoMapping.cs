@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.DayWorkDirectory;
+using WebApi.DayWorkDirectory.Dtos;
 using WebApi.ServiceDirectory;
 using WebApi.ServiceDirectory.Dtos;
 using WebApi.UserDirectory;
@@ -26,6 +28,8 @@ namespace WebApi.Helpers
             CreateMap<UserAdmin, ReturnAdminDto>();
             CreateMap<UserClient, ReturnClientDetailDto>();
             CreateMap<UserClient, ReturnClientDto>();
+            CreateMap<DayWork, DayWorkToReturnDto>();
+            CreateMap<AddDayWorkDto, DayWork>();
         }
 
     }

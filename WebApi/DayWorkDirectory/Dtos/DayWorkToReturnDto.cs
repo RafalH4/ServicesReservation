@@ -5,9 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApi.DayWorkDirectory.Dtos
 {
-    public class AddDayWorkDto
+    public class DayWorkToReturnDto
     {
-        public DateTime StartDateTime { get; set; }
-        public DateTime EndDateTime { get; set; }
     }
 }
