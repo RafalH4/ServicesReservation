@@ -8,34 +8,34 @@ using WebApi.Helpers;
 
 namespace WebApi.DayWorkDirectory
 {
+    [Route("[controller]")]
     [ApiController]
-    [Route("[daywork]")]
     public class DayWorkController : ApiBaseController
     {
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] AddDayWorkDto dayWork)
         {
-
+            throw new Exception("No code");
         }
-        [HttpGet]
+        [HttpGet("all")]
         public async Task<IActionResult> Get()
         {
-
+            throw new Exception("No code");
         }
         [HttpGet]
         public async Task<IActionResult> Get(DateTime startDate, DateTime endDate)
         {
-
+            throw new Exception("No code");
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
         {
-
+            throw new Exception("No code");
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-
+            throw new Exception("No code");
         }
 
     }

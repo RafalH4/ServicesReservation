@@ -29,13 +29,6 @@ namespace WebApi.DataContext
             .HasValue<UserAdmin>("admin")
             .HasValue<UserClient>("client");
 
-            builder.Entity<Service>()
-                .HasOne(userAdmin => userAdmin.CreatedBy)
-                .WithMany(userAdmin => userAdmin.CreatedServices);
-
-            builder.Entity<Service>()
-                .HasOne(userAdmin => userAdmin.ServiceProvider)
-                .WithMany(userAdmin => userAdmin.OfferedServices);
         }
     }
 }

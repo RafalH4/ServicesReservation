@@ -15,9 +15,48 @@ namespace WebApi.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("WebApi.AvaiableServiceDirectory.ItemService", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("DurationInMinutes")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ServiceName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Items");
+                });
+
+            modelBuilder.Entity("WebApi.DayWorkDirectory.DayWork", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("EndDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ServiceProviderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("StartDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServiceProviderId");
+
+                    b.ToTable("DayWorks");
+                });
 
             modelBuilder.Entity("WebApi.ServiceDirectory.Service", b =>
                 {
@@ -25,40 +64,34 @@ namespace WebApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<float>("Advance")
-                        .HasColumnType("real");
-
                     b.Property<Guid?>("ClientId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("CreatedById")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateOfReservation")
                         .HasColumnType("datetime2");
 
-                    b.Property<float>("FullPrice")
-                        .HasColumnType("real");
-
-                    b.Property<float>("LeftToPay")
-                        .HasColumnType("real");
-
-                    b.Property<string>("ServiceName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("ServiceProviderId")
+                    b.Property<Guid?>("DayWorkId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ItemServiceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
 
-                    b.HasIndex("CreatedById");
+                    b.HasIndex("DayWorkId");
 
-                    b.HasIndex("ServiceProviderId");
+                    b.HasIndex("ItemServiceId");
 
                     b.ToTable("Services");
                 });
@@ -87,6 +120,9 @@ namespace WebApi.Migrations
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -112,19 +148,26 @@ namespace WebApi.Migrations
                     b.HasDiscriminator().HasValue("client");
                 });
 
+            modelBuilder.Entity("WebApi.DayWorkDirectory.DayWork", b =>
+                {
+                    b.HasOne("WebApi.UserDirectory.UserAdmin", "ServiceProvider")
+                        .WithMany("DayWorks")
+                        .HasForeignKey("ServiceProviderId");
+                });
+
             modelBuilder.Entity("WebApi.ServiceDirectory.Service", b =>
                 {
                     b.HasOne("WebApi.UserDirectory.UserClient", "Client")
                         .WithMany("Services")
                         .HasForeignKey("ClientId");
 
-                    b.HasOne("WebApi.UserDirectory.UserAdmin", "CreatedBy")
-                        .WithMany("CreatedServices")
-                        .HasForeignKey("CreatedById");
+                    b.HasOne("WebApi.DayWorkDirectory.DayWork", "DayWork")
+                        .WithMany("Services")
+                        .HasForeignKey("DayWorkId");
 
-                    b.HasOne("WebApi.UserDirectory.UserAdmin", "ServiceProvider")
-                        .WithMany("OfferedServices")
-                        .HasForeignKey("ServiceProviderId");
+                    b.HasOne("WebApi.AvaiableServiceDirectory.ItemService", "ItemService")
+                        .WithMany()
+                        .HasForeignKey("ItemServiceId");
                 });
 #pragma warning restore 612, 618
         }

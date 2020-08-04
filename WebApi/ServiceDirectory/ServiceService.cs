@@ -60,12 +60,6 @@ namespace WebApi.ServiceDirectory
                     services.Add(new Service
                     {
                         Id = Guid.NewGuid(),
-                        ServiceName = servicesData.ServiceName,
-                        Date = tempTime,
-                        CreatedBy = (UserAdmin)adminUser,
-                        ServiceProvider = (UserAdmin)serviceProvider,
-                        FullPrice = servicesData.FullPrice
-                      
                     });
                 }
                 
@@ -106,24 +100,7 @@ namespace WebApi.ServiceDirectory
 
         public async Task UpdateService(UpdateServiceDto service)
         {
-            var serviceToUpdate = await _serviceRepsitory.GetService(service.ServiceId);
-            if (service.ServiceName != null)
-                serviceToUpdate.ServiceName = service.ServiceName;
-            if (service.ProviderId != null)
-            {
-                var provider = await _userRepository.GetUserById(service.ProviderId);
-                if (provider != null)
-                    serviceToUpdate.ServiceProvider = (UserAdmin)provider;
-            }
-            if (service.ClientId != null)
-            {
-                var client = await _userRepository.GetUserById(service.ClientId);
-                if (client != null)
-                    serviceToUpdate.Client = (UserClient)client;
-            }
-            if (service.FullPrice != null)
-                serviceToUpdate.FullPrice = (float)service.FullPrice;
-            await _serviceRepsitory.UpdateService(serviceToUpdate);
+            throw new Exception("No function");
         }
     }
 }

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Http.ExceptionHandling;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -105,7 +104,7 @@ namespace WebApi
             app.UseCors(x => x.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader());
             app.UseSwagger();
             app.UseSwaggerUI(opt =>
-                opt.SwaggerEndpoint("/swagger/v1/swagger.json", "My Api V1"));
+                opt.SwaggerEndpoint("/swagger/v1/swagger.json", "v1"));
 
             app.UseHttpsRedirection();
 
