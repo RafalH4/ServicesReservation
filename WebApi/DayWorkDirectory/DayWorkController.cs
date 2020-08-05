@@ -12,15 +12,22 @@ namespace WebApi.DayWorkDirectory
     [ApiController]
     public class DayWorkController : ApiBaseController
     {
+        private readonly IDayWorkService _dayWorkService;
+        public DayWorkController(IDayWorkService dayWorkService)
+        {
+            _dayWorkService = dayWorkService;
+        }
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] AddDayWorkDto dayWork)
         {
-            throw new Exception("No code");
+            await _dayWorkService.Add(dayWork, CurrentUserId);
+            return Ok();
         }
         [HttpGet("all")]
         public async Task<IActionResult> Get()
         {
-            throw new Exception("No code");
+            var services = await _dayWorkService.Get();
+            return Ok(services);
         }
         [HttpGet]
         public async Task<IActionResult> Get(DateTime startDate, DateTime endDate)

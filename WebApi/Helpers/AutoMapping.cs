@@ -24,7 +24,8 @@ namespace WebApi.Helpers
             CreateMap<UserClient, ReturnClientDetailDto>();
             CreateMap<UserClient, ReturnClientDto>();
             CreateMap<DayWork, DayWorkToReturnDto>();
-            CreateMap<AddDayWorkDto, DayWork>();
+            CreateMap<AddDayWorkDto, DayWork>()
+                .ForMember(target => target.Id, opt => opt.MapFrom(x => Guid.NewGuid()));
         }
 
     }

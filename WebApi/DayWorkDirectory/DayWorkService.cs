@@ -24,16 +24,20 @@ namespace WebApi.DayWorkDirectory
         public async Task Add(AddDayWorkDto dayWorkDto, Guid providerId)
         {
             var provider = await _userRepository.GetUserById(providerId);
-            if (provider == null)
-                throw new Exception("Bad user ID");
+            //Włączyć podczas obsługi użytkowników
+            //if (provider == null)
+            //    throw new Exception("Bad user ID");
 
             var dayWork = _mapper.Map<AddDayWorkDto, DayWork>(dayWorkDto);
             dayWork.ServiceProvider = (UserAdmin)provider;
+            await _dayWorkRepository.Add(dayWork);
         }
 
         public async Task<IEnumerable<DayWorkToReturnDto>> Get()
         {
-            throw new NotImplementedException();
+            var allServices = await _dayWorkRepository.Get();
+            var temp = _mapper.Map<IEnumerable<DayWork>, IEnumerable<DayWorkToReturnDto>>(allServices);
+            return temp;
         }
 
         public Task<IEnumerable<DayWorkToReturnDto>> Get(DateTime startDateTime, DateTime endDateTime)

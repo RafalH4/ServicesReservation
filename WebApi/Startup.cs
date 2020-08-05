@@ -19,6 +19,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using WebApi.DataContext;
+using WebApi.DayWorkDirectory;
 using WebApi.Helpers;
 using WebApi.ServiceDirectory;
 using WebApi.UserDirectory;
@@ -73,6 +74,8 @@ namespace WebApi
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IServiceRepository, ServiceRepository>();
             services.AddScoped<IServiceService, ServiceService>();
+            services.AddScoped<IDayWorkRepository, DayWorkRepository>();
+            services.AddScoped<IDayWorkService, DayWorkService>();
             services.AddScoped<IJwtHandler, JwtHandler>();
 
         }

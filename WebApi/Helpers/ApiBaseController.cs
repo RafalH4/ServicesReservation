@@ -9,7 +9,7 @@ namespace WebApi.Helpers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ApiBaseController : ControllerBase
+    public class ApiBaseController : Controller
     {
         protected Guid CurrentUserId => User?.Identity?.IsAuthenticated == true ?
             Guid.Parse(User.Identity.Name) :
