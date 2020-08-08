@@ -35,24 +35,31 @@ namespace WebApi.DayWorkDirectory
 
         public async Task<IEnumerable<DayWorkToReturnDto>> Get()
         {
-            var allServices = await _dayWorkRepository.Get();
-            var temp = _mapper.Map<IEnumerable<DayWork>, IEnumerable<DayWorkToReturnDto>>(allServices);
-            return temp;
+            var allDayWork = await _dayWorkRepository.Get();
+            return _mapper.Map<IEnumerable<DayWork>, IEnumerable<DayWorkToReturnDto>>(allDayWork);
         }
 
-        public Task<IEnumerable<DayWorkToReturnDto>> Get(DateTime startDateTime, DateTime endDateTime)
+        public async Task<IEnumerable<DayWorkToReturnDto>> Get(DateTime startDateTime, DateTime endDateTime)
         {
-            throw new NotImplementedException();
+            var dayWork = await _dayWorkRepository.Get(startDateTime.Date, endDateTime.Date);
+            return _mapper.Map<IEnumerable<DayWork>, IEnumerable<DayWorkToReturnDto>>(dayWork);
         }
 
-        public Task<DayWorkToReturnDto> Get(Guid id)
+        public async Task<DayWorkToReturnDto> Get(Guid id)
         {
-            throw new NotImplementedException();
+            var dayWork = await _dayWorkRepository.Get(id);
+            if (dayWork == null)
+                throw new Exception("Bad ID");
+
+            return _mapper.Map<DayWork, DayWorkToReturnDto>(dayWork);
         }
 
-        public Task Remove(Guid id)
+        public async Task Remove(Guid id)
         {
-            throw new NotImplementedException();
+            var dayWork = await _dayWorkRepository.Get(id);
+            if (dayWork == null)
+                throw new Exception("Bad ID");
+            await _dayWorkRepository.Remove(dayWork);
         }
     }
 }

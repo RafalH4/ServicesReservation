@@ -29,20 +29,23 @@ namespace WebApi.DayWorkDirectory
             var services = await _dayWorkService.Get();
             return Ok(services);
         }
-        [HttpGet]
+        [HttpGet("params")]
         public async Task<IActionResult> Get(DateTime startDate, DateTime endDate)
         {
-            throw new Exception("No code");
+            var services = await _dayWorkService.Get(startDate, endDate);
+            return Ok(services);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
         {
-            throw new Exception("No code");
+            var dayWork = await _dayWorkService.Get(id);
+            return Ok(dayWork);
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            throw new Exception("No code");
+            await _dayWorkService.Remove(id);
+            return Ok("Deleted " + id);
         }
 
     }
