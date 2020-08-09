@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.AvaiableServiceDirectory;
+using WebApi.AvaiableServiceDirectory.Dtos;
 using WebApi.DayWorkDirectory;
 using WebApi.DayWorkDirectory.Dtos;
 using WebApi.ServiceDirectory;
@@ -25,6 +27,8 @@ namespace WebApi.Helpers
             CreateMap<UserClient, ReturnClientDto>();
             CreateMap<DayWork, DayWorkToReturnDto>();
             CreateMap<AddDayWorkDto, DayWork>()
+                .ForMember(target => target.Id, opt => opt.MapFrom(x => Guid.NewGuid()));
+            CreateMap<AddItemServiceDto, ItemService>()
                 .ForMember(target => target.Id, opt => opt.MapFrom(x => Guid.NewGuid()));
         }
 

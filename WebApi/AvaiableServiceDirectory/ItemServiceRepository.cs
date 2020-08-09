@@ -20,14 +20,14 @@ namespace WebApi.AvaiableServiceDirectory
             await Task.CompletedTask;
         }
 
-        public async Task Get()
+        public async Task<IEnumerable<ItemService>> Get()
             => await Task.FromResult(_context.Items);
 
-        public async Task Get(Guid id)
+        public async Task<ItemService> Get(Guid id)
             => await Task.FromResult(_context.Items
                 .FirstOrDefault(x => x.Id == id));
 
-        public async Task Get(string name)
+        public async Task<ItemService> Get(string name)
             => await Task.FromResult(_context.Items
                 .FirstOrDefault(x => x.ServiceName == name));
 
