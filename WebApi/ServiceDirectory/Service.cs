@@ -12,13 +12,10 @@ namespace WebApi.ServiceDirectory
     public class Service
     {
         public Guid Id { get; set; }
-        public DateTime StartTime { get; set; }
         public ItemService ItemService { get; set; }
-        public DateTime EndTime { get; set; }
         public DateTime DateOfReservation { get; set; }
         public DayWork DayWork { get; set; }
         public UserClient Client { get; set; }
-        public float Price { get; set; }
 
     }
 }

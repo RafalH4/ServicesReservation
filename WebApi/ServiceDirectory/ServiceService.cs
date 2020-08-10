@@ -44,27 +44,27 @@ namespace WebApi.ServiceDirectory
         public async Task AddServices(CreateServiceDto servicesData, Guid adminId)
         {
             var adminUser = await _userRepository.GetUserById(adminId);
-            var serviceProvider = await _userRepository.GetUserById(servicesData.ServiceProviderId);
+           // var serviceProvider = await _userRepository.GetUserById(servicesData.ServiceProviderId);
             List<Service> services = new List<Service>();
 
-            servicesData.Dates.ForEach(date =>
-            {
-                var startDate = date.AddHours(servicesData.StartHour)
-                                    .AddMinutes(servicesData.StartMinute);
-                var endDate = date.AddHours(servicesData.EndHour)
-                                   .AddMinutes(servicesData.EndMinute);
+            //servicesData.Dates.ForEach(date =>
+            //{
+            //    var startDate = date.AddHours(servicesData.StartHour)
+            //                        .AddMinutes(servicesData.StartMinute);
+            //    var endDate = date.AddHours(servicesData.EndHour)
+            //                       .AddMinutes(servicesData.EndMinute);
                 
 
-                for(DateTime tempTime = startDate; tempTime<=endDate; tempTime = tempTime.AddMinutes(servicesData.RangeInMinutes))
-                {
-                    services.Add(new Service
-                    {
-                        Id = Guid.NewGuid(),
-                    });
-                }
+            //    for(DateTime tempTime = startDate; tempTime<=endDate; tempTime = tempTime.AddMinutes(servicesData.RangeInMinutes))
+            //    {
+            //        services.Add(new Service
+            //        {
+            //            Id = Guid.NewGuid(),
+            //        });
+            //    }
                 
 
-            });
+            //});
             await _serviceRepsitory.AddListServices(services);
         }
 
