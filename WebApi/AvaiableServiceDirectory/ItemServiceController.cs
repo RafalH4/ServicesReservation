@@ -29,5 +29,29 @@ namespace WebApi.AvaiableServiceDirectory
             var items = await _itemServiceService.Get();
             return Ok(items);
         }
+        [HttpGet("id/{id}")]
+        public async Task<IActionResult> Get(Guid id)
+        {
+            var item = await _itemServiceService.Get(id);
+            return Ok(item);
+        }
+        [HttpGet("name/{name}")]
+        public async Task<IActionResult> Get(string name)
+        {
+            var item = await _itemServiceService.Get(name);
+            return Ok(item);
+        }
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] ItemService item)
+        {
+            await _itemServiceService.Update(item);
+            return Ok("Updated");
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Remove(Guid id)
+        {
+            await _itemServiceService.Remove(id);
+            return Ok("Deleted");
+        }
     }
 }
