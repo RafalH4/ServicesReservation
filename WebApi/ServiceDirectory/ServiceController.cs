@@ -18,19 +18,20 @@ namespace WebApi.ServiceDirectory
         {
             _serviceService = serviceService;
         }
-
-        [HttpPost("AddService")]
-        public async Task<IActionResult> AddService([FromBody]CreateServiceDto createService)
+        [HttpPost("admin")]
+        public async Task<IActionResult> Add([FromBody] CreateServiceByAdminDto serviceParams)
         {
-            await _serviceService.AddServices(createService, CurrentUserId);
-            return Ok();
+            await _serviceService.Add(serviceParams);
+            return Ok("Service has been created");
         }
-        [HttpPost("BookOrder")]
-        public async Task<IActionResult> BookServices(List<Guid> idList)
-        {
-            return Ok(true);
 
+        [HttpPost("client")]
+        public async Task<IActionResult> Add([FromBody]CreateServiceByClientDto serviceParams)
+        {
+            await _serviceService.Add(serviceParams, CurrentUserId);
+            return Ok("Service has been created");
         }
+
 
         //Dorobić parametry/filtry
         [HttpGet("GetServices")]

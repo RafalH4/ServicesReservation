@@ -8,9 +8,9 @@ namespace WebApi.ServiceDirectory
 {
     public interface IServiceService
     {
-        public Task AddServices(CreateServiceDto servicesData, Guid adminId);
-        public Task AddClinetToService(Guid serviceId, Guid ClientId);
-        public Task<ReturnServiceDetailDto> GetService(Guid id);
+        public Task Add(CreateServiceByAdminDto createService);
+        public Task Add(CreateServiceByClientDto servicesData, Guid clientId);
+        public Task<ReturnServiceDto> GetService(Guid id);
         public Task<IEnumerable<ReturnServiceDto>> GetServices(
             DateTime? startDate,
             DateTime? endDate,

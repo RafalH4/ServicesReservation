@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.AvaiableServiceDirectory;
+using WebApi.DayWorkDirectory;
 using WebApi.ServiceDirectory.Dtos;
 using WebApi.UserDirectory;
 
@@ -12,38 +15,46 @@ namespace WebApi.ServiceDirectory
     {
         private readonly IServiceRepository _serviceRepsitory;
         private readonly IUserRepository _userRepository;
+        private readonly IDayWorkRepository _dayWorkRepository;
+        private readonly IItemServiceRepository _itemServiceRepository;
         private readonly IMapper _mapper;
 
         public ServiceService(IServiceRepository serviceRepsitory,
             IUserRepository userRepository,
+            IDayWorkRepository dayWorkRepository,
+            IItemServiceRepository itemServiceRepository,
             IMapper mapper)
         {
             _serviceRepsitory = serviceRepsitory;
             _userRepository = userRepository;
+            _dayWorkRepository = dayWorkRepository;
+            _itemServiceRepository = itemServiceRepository;
             _mapper = mapper;
         }
-        public async Task AddClinetToService(Guid serviceId, Guid ClientId)
+
+        public async Task Add(CreateServiceByAdminDto createService)
         {
-            var service = await _serviceRepsitory.GetService(serviceId);
-            if (service == null)
-                throw new Exception("Bad service ID");
+            //Sprawdzić, czy parametry są poprawne
+            //Usługa z DayWorkDto. Przenieść do helpera?
+            var itemService = await _itemServiceRepository.Get(createService.ItemServiceId);
+            var client = await _userRepository.GetUserById(createService.ClientId);
+            var dayWork = await _dayWorkRepository.Get(createService.DayWorkId);
+           
+            if (itemService == null || client == null || dayWork == null)
+                throw new Exception("Bad Id");
 
-            if (service.Client != null)
-                throw new Exception("This service has Client");
+            var serviceToDb = new Service();
+            serviceToDb.Id = Guid.NewGuid();
+            serviceToDb.ItemService = itemService;
+            serviceToDb.Client = (UserClient)client;
+            serviceToDb.DayWork = dayWork;
+            serviceToDb.DateOfReservation = DateTime.Now;
+            
 
-            var user = await _userRepository.GetUserById(ClientId);
-            if (user == null)
-                throw new Exception("Bad userId");
-
-            service.Client = (UserClient)user;
-            service.DateOfReservation = DateTime.Now;
-
-            await _serviceRepsitory.UpdateService(service);
         }
-
-        public async Task AddServices(CreateServiceDto servicesData, Guid adminId)
+        public async Task Add(CreateServiceByClientDto servicesData, Guid clientId)
         {
-            var adminUser = await _userRepository.GetUserById(adminId);
+            var adminUser = await _userRepository.GetUserById(clientId);
            // var serviceProvider = await _userRepository.GetUserById(servicesData.ServiceProviderId);
             List<Service> services = new List<Service>();
 
@@ -80,10 +91,10 @@ namespace WebApi.ServiceDirectory
             return _mapper.Map<IEnumerable<Service>, List<ReturnServiceDto>>(services);
         }
 
-        public async Task<ReturnServiceDetailDto> GetService(Guid id)
+        public async Task<ReturnServiceDto> GetService(Guid id)
         {
             var service = await _serviceRepsitory.GetService(id);
-            return _mapper.Map<Service, ReturnServiceDetailDto>(service);
+            return _mapper.Map<Service, ReturnServiceDto>(service);
         }
 
         public async Task<IEnumerable<ReturnServiceDto>> GetServices(DateTime? startDate, DateTime? endDate, Guid? clientId, Guid? providerId)

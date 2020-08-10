@@ -12,12 +12,9 @@ namespace WebApi.ServiceDirectory.Dtos
     public class ReturnServiceDto
     {
         public Guid Id { get; set; }
-        public DateTime StartTime { get; set; }
         public ItemService ItemService { get; set; }
-        public DateTime EndTime { get; set; }
         public DateTime DateOfReservation { get; set; }
         public DayWorkToReturnDto DayWork { get; set; }
         public ReturnClientDto Client { get; set; }
-        public float Price { get; set; }
     }
 }
