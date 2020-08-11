@@ -18,7 +18,7 @@ namespace WebApi.Helpers
     {
         public AutoMapping()
         {
-            CreateMap<Service, ReturnServiceDetailDto>();
+            CreateMap<Service, ReturnServiceDto>();
             //    .ForMember(target => target.ServiceProvider, opt => opt.MapFrom(src=>src.ServiceProvider));
             CreateMap<Service, ReturnServiceDto>();
             CreateMap<UserAdmin, ReturnAdminDetailDto>();

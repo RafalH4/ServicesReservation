@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi.DayWorkDirectory.Dtos;
+using WebApi.ServiceDirectory;
 using WebApi.UserDirectory;
+using WebApi.UserDirectory.Dto;
 
 namespace WebApi.DayWorkDirectory
 {
@@ -12,13 +14,16 @@ namespace WebApi.DayWorkDirectory
     {
         private readonly IDayWorkRepository _dayWorkRepository;
         private readonly IUserRepository _userRepository;
+        private readonly IServiceRepository _serviceRepository;
         private readonly IMapper _mapper;
         public DayWorkService(IDayWorkRepository dayWorkRepository,
             IUserRepository userRepository,
+            IServiceRepository serviceRepository,
             IMapper mapper)
         {
             _dayWorkRepository = dayWorkRepository;
             _userRepository = userRepository;
+            _serviceRepository = serviceRepository;
             _mapper = mapper;
         }
         public async Task Add(AddDayWorkDto dayWorkDto, Guid providerId)
@@ -52,6 +57,36 @@ namespace WebApi.DayWorkDirectory
                 throw new Exception("Bad ID");
 
             return _mapper.Map<DayWork, DayWorkToReturnDto>(dayWork);
+        }
+
+        public async Task<IEnumerable<FreeServiceDto>> GetFreeServices(List<DayWork> dayWorks, int serviceTime, int minServiceTime)
+        {
+            var existedServices = new List<Service>();
+            var servicesToReturn = new List<FreeServiceDto>();
+            dayWorks.ForEach(dayWork =>
+            {
+                for(DateTime currentTime = dayWork.StartDateTime; currentTime < dayWork.EndDateTime; currentTime = currentTime.AddMinutes(minServiceTime))
+                {
+                    existedServices.Clear();
+                    existedServices = (List<Service>)(from service in dayWork.Services
+                                      where service.StartTime > currentTime
+                                      && service.StartTime <= currentTime.AddMinutes(serviceTime)
+                                      select service);
+                    if(existedServices.Count == 0)
+                    {
+                        servicesToReturn.Add(new FreeServiceDto
+                        {
+                            StarTime = currentTime,
+                            EndTime = currentTime.AddMinutes(serviceTime),
+                            ServiceName = "TempServiceName",
+                            Provider = _mapper.Map<UserAdmin, ReturnAdminDto>(dayWork.ServiceProvider)
+                        });
+                    }
+
+
+                }
+            });
+            return servicesToReturn;
         }
 
         public async Task Remove(Guid id)

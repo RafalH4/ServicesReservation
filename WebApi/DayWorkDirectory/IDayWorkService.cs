@@ -13,5 +13,6 @@ namespace WebApi.DayWorkDirectory
         public Task<IEnumerable<DayWorkToReturnDto>> Get(DateTime startDateTime, DateTime endDateTime);
         public Task<DayWorkToReturnDto> Get(Guid id);
         public Task Remove(Guid id);
+        public Task<IEnumerable<FreeServiceDto>> GetFreeServices(List<DayWork> dayWorks, int serviceTime, int minServiceTime);
     }
 }

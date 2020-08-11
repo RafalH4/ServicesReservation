@@ -17,18 +17,21 @@ namespace WebApi.ServiceDirectory
         private readonly IUserRepository _userRepository;
         private readonly IDayWorkRepository _dayWorkRepository;
         private readonly IItemServiceRepository _itemServiceRepository;
+        private readonly IDayWorkService _dayWorkService;
         private readonly IMapper _mapper;
 
         public ServiceService(IServiceRepository serviceRepsitory,
             IUserRepository userRepository,
             IDayWorkRepository dayWorkRepository,
             IItemServiceRepository itemServiceRepository,
+            IDayWorkService dayWorkService,
             IMapper mapper)
         {
             _serviceRepsitory = serviceRepsitory;
             _userRepository = userRepository;
             _dayWorkRepository = dayWorkRepository;
             _itemServiceRepository = itemServiceRepository;
+            _dayWorkService = dayWorkService;
             _mapper = mapper;
         }
 
@@ -49,13 +52,32 @@ namespace WebApi.ServiceDirectory
             serviceToDb.Client = (UserClient)client;
             serviceToDb.DayWork = dayWork;
             serviceToDb.DateOfReservation = DateTime.Now;
+
+            await _serviceRepsitory.AddService(serviceToDb);
             
 
         }
-        public async Task Add(CreateServiceByClientDto servicesData, Guid clientId)
+        public async Task Add(CreateServiceByClientDto createService, Guid clientId)
         {
-            var adminUser = await _userRepository.GetUserById(clientId);
-           // var serviceProvider = await _userRepository.GetUserById(servicesData.ServiceProviderId);
+            //Sprawdzić, czy parametry są poprawne
+            //Usługa z DayWorkDto. Przenieść do helpera?
+            var client = await _userRepository.GetUserById(clientId);
+            var itemService = await _itemServiceRepository.Get(createService.ItemServiceId);
+            var dayWork = await _dayWorkRepository.Get(createService.DayWorkId);
+            
+            if (itemService == null || client == null || dayWork == null)
+                throw new Exception("Bad Id");
+
+            var serviceToDb = new Service();
+            serviceToDb.Id = Guid.NewGuid();
+            serviceToDb.ItemService = itemService;
+            serviceToDb.Client = (UserClient)client;
+            serviceToDb.DayWork = dayWork;
+            serviceToDb.DateOfReservation = DateTime.Now;
+
+            await _serviceRepsitory.AddService(serviceToDb);
+
+            // var serviceProvider = await _userRepository.GetUserById(servicesData.ServiceProviderId);
             List<Service> services = new List<Service>();
 
             //servicesData.Dates.ForEach(date =>

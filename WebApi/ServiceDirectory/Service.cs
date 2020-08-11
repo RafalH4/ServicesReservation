@@ -14,6 +14,7 @@ namespace WebApi.ServiceDirectory
         public Guid Id { get; set; }
         public ItemService ItemService { get; set; }
         public DateTime DateOfReservation { get; set; }
+        public DateTime StartTime { get; set; }
         public DayWork DayWork { get; set; }
         public UserClient Client { get; set; }
 

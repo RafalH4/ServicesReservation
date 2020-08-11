@@ -18,6 +18,7 @@ namespace WebApi.ServiceDirectory
         {
             _serviceService = serviceService;
         }
+        //Tylko z poziomu admina
         [HttpPost("admin")]
         public async Task<IActionResult> Add([FromBody] CreateServiceByAdminDto serviceParams)
         {
