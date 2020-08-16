@@ -35,6 +35,13 @@ namespace WebApi.DayWorkDirectory
             var services = await _dayWorkService.Get(startDate, endDate);
             return Ok(services);
         }
+        [HttpGet("free")]
+        public async Task<IActionResult> Get(DateTime startDate, DateTime endDate, Guid itemId)
+        {
+            var services = await _dayWorkService.GetFreeServices(startDate, endDate, itemId);
+            return Ok(services);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
         {

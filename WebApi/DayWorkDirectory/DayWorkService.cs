@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.AvaiableServiceDirectory;
 using WebApi.DayWorkDirectory.Dtos;
 using WebApi.ServiceDirectory;
 using WebApi.UserDirectory;
@@ -14,16 +15,17 @@ namespace WebApi.DayWorkDirectory
     {
         private readonly IDayWorkRepository _dayWorkRepository;
         private readonly IUserRepository _userRepository;
-        private readonly IServiceRepository _serviceRepository;
+        private readonly IItemServiceRepository _itemServiceRepository;
         private readonly IMapper _mapper;
         public DayWorkService(IDayWorkRepository dayWorkRepository,
             IUserRepository userRepository,
             IServiceRepository serviceRepository,
+            IItemServiceRepository itemServiceRepository,
             IMapper mapper)
         {
             _dayWorkRepository = dayWorkRepository;
             _userRepository = userRepository;
-            _serviceRepository = serviceRepository;
+            _itemServiceRepository = itemServiceRepository;
             _mapper = mapper;
         }
         public async Task Add(AddDayWorkDto dayWorkDto, Guid providerId)
@@ -59,8 +61,12 @@ namespace WebApi.DayWorkDirectory
             return _mapper.Map<DayWork, DayWorkToReturnDto>(dayWork);
         }
 
-        public async Task<IEnumerable<FreeServiceDto>> GetFreeServices(List<DayWork> dayWorks, int serviceTime, int minServiceTime)
+        public async Task<IEnumerable<FreeServiceDto>> GetFreeServices(DateTime startDateTime, DateTime endDateTime, Guid itemId)
         {
+            var serviceTime = (await _itemServiceRepository.Get(itemId)).DurationInMinutes;
+            var dayWorks = (await _dayWorkRepository.Get(startDateTime.Date, endDateTime.Date)).ToList();
+            var offeredServices = await _itemServiceRepository.Get();
+            var minServiceTime = offeredServices.OrderBy(x => x.DurationInMinutes).FirstOrDefault().DurationInMinutes;
             var existedServices = new List<Service>();
             var servicesToReturn = new List<FreeServiceDto>();
             dayWorks.ForEach(dayWork =>

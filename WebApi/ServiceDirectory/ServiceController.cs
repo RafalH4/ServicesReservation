@@ -43,8 +43,9 @@ namespace WebApi.ServiceDirectory
         }
 
         [HttpGet("GetFreeServices")]
-        public async Task<IActionResult> GetFreeServices()
+        public async Task<IActionResult> GetFreeServices(DateTime startDate, DateTime endDate)
         {
+            
             return Ok();
         }
 

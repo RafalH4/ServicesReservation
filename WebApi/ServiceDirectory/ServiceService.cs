@@ -64,7 +64,11 @@ namespace WebApi.ServiceDirectory
             var client = await _userRepository.GetUserById(clientId);
             var itemService = await _itemServiceRepository.Get(createService.ItemServiceId);
             var dayWork = await _dayWorkRepository.Get(createService.DayWorkId);
-            
+            var temList = new List<DayWork>();
+            temList.Add(dayWork);
+            var currentServices = await _dayWorkService.GetFreeServices(createService.StartTime, createService.StartTime, createService.ItemServiceId);
+
+
             if (itemService == null || client == null || dayWork == null)
                 throw new Exception("Bad Id");
 
