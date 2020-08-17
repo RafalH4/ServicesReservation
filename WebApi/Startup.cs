@@ -17,6 +17,14 @@ using WebApi.DayWorkDirectory;
 using WebApi.Helpers;
 using WebApi.ServiceDirectory;
 using WebApi.UserDirectory;
+using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
+using System.Collections.Generic;
+using Swashbuckle.AspNetCore.Filters;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Microsoft.AspNetCore.JsonPatch.Operations;
+using Swashbuckle.Swagger;
+using System.Web.Http.Description;
 
 namespace WebApi
 {
@@ -38,8 +46,20 @@ namespace WebApi
             services.AddControllers();
 
             services.AddSwaggerGen(opt =>
-                opt.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Api", Version = "v1" }));
-
+            {
+                opt.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Api", Version = "v1" });
+                opt.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer"
+                });
+                opt.OperationFilter<SecurityRequirementsOperationFilter>();
+            }
+                );
+            
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
              .AddJwtBearer(opt =>
              {
@@ -103,7 +123,7 @@ namespace WebApi
             app.UseCors(x => x.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader());
             app.UseSwagger();
             app.UseSwaggerUI(opt =>
-                opt.SwaggerEndpoint("/swagger/v1/swagger.json", "v1"));
+                opt.SwaggerEndpoint("/swagger/v1/swagger.json", "v1")); 
 
             app.UseHttpsRedirection();
 

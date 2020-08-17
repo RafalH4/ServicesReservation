@@ -5,6 +5,8 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { HeaderComponent } from './header/header.component';
 import { AvaiableServicesComponent } from './avaiable-services/avaiable-services.component';
 import { SelectedServicesComponent } from './selected-services/selected-services.component';
+import { ProvidersComponent } from './providers/providers.component';
+import { ItemsComponent } from './items/items.component';
 
 
 
@@ -13,7 +15,9 @@ import { SelectedServicesComponent } from './selected-services/selected-services
   MainPageComponent,
   HeaderComponent,
   AvaiableServicesComponent,
-  SelectedServicesComponent],
+  SelectedServicesComponent,
+  ProvidersComponent,
+  ItemsComponent],
   imports: [
     CommonModule,
     PagesRoutingModule,

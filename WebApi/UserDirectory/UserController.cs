@@ -27,7 +27,7 @@ namespace WebApi.UserDirectory
             return Ok();
         }
 
-        [Authorize(Policy = "admin")]
+       // [Authorize(Policy = "admin")]
         [HttpPost("registerAdmin")]
         public async Task<IActionResult> AddAdmin([FromBody]AddUserDto userDto)
         {
@@ -49,6 +49,7 @@ namespace WebApi.UserDirectory
         [HttpGet("allClients")]
         public async Task<IActionResult> AllClients()
         {
+            var a = CurrentUserId;
             var users = await _userService.GetUsers();
             return Ok(users);
         }
