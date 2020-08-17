@@ -1,0 +1,23 @@
+<nav>
+    <a routerLink="new">Dodaj użytkownika</a>
+</nav>
+<table 
+class="mainTable">
+    <tr>
+        <td><h3>Lp</h3></td>
+        <td><h3>Imię</h3></td>
+        <td><h3>Nazwisko</h3></td>
+        <td><h3>rola</h3></td>
+        <td><h3>akcja</h3></td>
+    </tr>
+        <tr *ngFor="let user of users">
+            <td>{{user.email}}</td>
+            <td>Imię</td>
+            <td>Nazwisko</td>
+            <td>rola</td>
+            <td>
+                <a href="">Edytuj</a>
+                <a href="">Usuń</a>
+            </td>
+        </tr>
+</table>
