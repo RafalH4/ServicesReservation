@@ -1,1 +1,32 @@
-<p>add-user works!</p>
+<h2>Tworzenie nowego użytkownika</h2>
+<form [formGroup]="newUser" (ngSubmit)="onSubmit()">
+    <label>
+        Imię:
+        <input type="text" formControlName = "firstName">
+    </label>
+    <label>
+        Nazwisko:
+        <input type="text" formControlName = "lastName">
+    </label>
+    <label>
+        Email:
+        <input type="text" formControlName = "email">
+    </label>
+    <label>
+        Numer telefonu:
+        <input type="text" formControlName = "phoneNumber">
+    </label>
+    <label>
+        Hasło:
+        <input type="password" formControlName = "password">
+    </label>
+    <label>
+        Powtórz hasło:
+        <input type="password" formControlName = "password2">
+    </label>
+    <label>
+        Administrator:
+        <input type="checkbox" formControlName="isAdmin" >
+    </label>
+    <button type="submit">Submit</button>
+</form>

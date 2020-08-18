@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { MainPageComponent } from './main-page/main-page.component';
 import { UserPageComponent } from './user-page/user-page.component';
@@ -18,7 +19,8 @@ import { AllUsersComponent } from './admin-page/users/all-users/all-users.compon
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ]
 })
 export class DashboardModule { }

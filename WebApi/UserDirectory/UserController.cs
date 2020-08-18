@@ -27,7 +27,7 @@ namespace WebApi.UserDirectory
             return Ok();
         }
 
-       // [Authorize(Policy = "admin")]
+        [Authorize(Policy = "admin")]
         [HttpPost("registerAdmin")]
         public async Task<IActionResult> AddAdmin([FromBody]AddUserDto userDto)
         {
