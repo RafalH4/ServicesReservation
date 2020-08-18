@@ -9,6 +9,7 @@ import { JwtHelperService, JwtModule, JWT_OPTIONS } from "@auth0/angular-jwt";
 import { AuthService } from './auth/services/auth.service';
 import { HttpHeaderInterceptor } from './auth/services/ReqInterceptor';
 import { ErrorInterceptorProvider } from './auth/services/ErrorInterceptor';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -29,6 +30,7 @@ export function jwtOptionsFactory(cookie: CookieService) {
     AppRoutingModule,
     AuthModule,
     AuthRoutingModule,
+    RouterModule,
     JwtModule.forRoot({
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,
