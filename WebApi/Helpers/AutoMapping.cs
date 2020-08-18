@@ -21,6 +21,7 @@ namespace WebApi.Helpers
             CreateMap<Service, ReturnServiceDto>();
             //    .ForMember(target => target.ServiceProvider, opt => opt.MapFrom(src=>src.ServiceProvider));
             CreateMap<Service, ReturnServiceDto>();
+            CreateMap<User, ReturnUserDto>();
             CreateMap<UserAdmin, ReturnAdminDetailDto>();
             CreateMap<UserAdmin, ReturnAdminDto>();
             CreateMap<UserClient, ReturnClientDetailDto>();

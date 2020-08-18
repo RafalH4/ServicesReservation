@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -12,11 +13,13 @@ namespace WebApi.UserDirectory
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
         private readonly IJwtHandler _jwtHandler;
         public UserService(IUserRepository userRepository,
-             IJwtHandler jwtHandler)
+            IMapper mapper, IJwtHandler jwtHandler)
         {
             _userRepository = userRepository;
+            _mapper = mapper;
             _jwtHandler = jwtHandler;
         }
         public async Task AddAdmin(AddUserDto userDto)
@@ -61,8 +64,11 @@ namespace WebApi.UserDirectory
         {
             throw new NotImplementedException();
         }
-        public async Task<IEnumerable<User>> GetUsers()
-            => await _userRepository.GetUsers();
+        public async Task<IEnumerable<ReturnUserDto>> GetUsers()
+        {
+            var users = await _userRepository.GetUsers();
+            return _mapper.Map<IEnumerable<User>, List<ReturnUserDto>>(users);
+        }
 
         public async Task<User> GetUser(Guid id)
             => await _userRepository.GetUserById(id);

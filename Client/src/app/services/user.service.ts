@@ -18,6 +18,6 @@ export class UserService {
   }
 
   getProviders(): Observable<any>{
-    return this.http.get(this.baseUrl+'allClients')
+    return this.http.get(this.baseUrl+'allUsers')
   }
 }
