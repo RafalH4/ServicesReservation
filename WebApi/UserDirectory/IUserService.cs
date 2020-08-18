@@ -15,6 +15,8 @@ namespace WebApi.UserDirectory
         Task ChangePassword(ChangePasswordDto password);
         Task<User> GetUser(Guid id);
         Task<IEnumerable<ReturnUserDto>> GetUsers();
+        Task<IEnumerable<ReturnAdminDto>> GetAdmins();
+        Task<IEnumerable<ReturnClientDto>> GetClients();
         Task<string> Login(UserLoginDto userLogin);
     }
 }

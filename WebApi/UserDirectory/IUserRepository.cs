@@ -13,5 +13,7 @@ namespace WebApi.UserDirectory
         Task<User> GetUserById(Guid id);
         Task<User> GetUserByEmail(string email);
         Task<IEnumerable<User>> GetUsers();
+        Task<IEnumerable<UserAdmin>> GetAdmins();
+        Task<IEnumerable<UserClient>> GetClients();
     }
 }

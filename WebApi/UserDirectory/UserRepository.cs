@@ -20,6 +20,12 @@ namespace WebApi.UserDirectory
             await Task.CompletedTask;
         }
 
+        public async Task<IEnumerable<UserAdmin>> GetAdmins()
+            => await Task.FromResult(_context.Admins);
+
+        public async Task<IEnumerable<UserClient>> GetClients()
+            => await Task.FromResult(_context.Clients);
+
         public async Task<User> GetUserByEmail(string email)
             => await Task.FromResult(_context.Users.FirstOrDefault(
                 user => user.Email == email));

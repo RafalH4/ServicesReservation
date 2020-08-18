@@ -48,23 +48,20 @@ namespace WebApi.UserDirectory
         [HttpGet("allUsers")]
         public async Task<IActionResult> AllUsers()
         {
-            var a = CurrentUserId;
             var users = await _userService.GetUsers();
             return Ok(users);
         }
         [HttpGet("allClients")]
         public async Task<IActionResult> AllClients()
         {
-            var a = CurrentUserId;
-            var users = await _userService.GetUsers();
+            var users = await _userService.GetClients();
             return Ok(users);
         }
 
         [HttpGet("allProviders")]
         public async Task<IActionResult> allProviders()
         {
-            var a = CurrentUserId;
-            var users = await _userService.GetUsers();
+            var users = await _userService.GetAdmins();
             return Ok(users);
         }
     }

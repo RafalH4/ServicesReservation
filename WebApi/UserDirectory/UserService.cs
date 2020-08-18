@@ -69,6 +69,17 @@ namespace WebApi.UserDirectory
             var users = await _userRepository.GetUsers();
             return _mapper.Map<IEnumerable<User>, List<ReturnUserDto>>(users);
         }
+        public async Task<IEnumerable<ReturnAdminDto>> GetAdmins()
+        {
+            var users = await _userRepository.GetAdmins();
+            return _mapper.Map<IEnumerable<UserAdmin>, List<ReturnAdminDto>>(users);
+        }
+
+        public async Task<IEnumerable<ReturnClientDto>> GetClients()
+        {
+            var users = await _userRepository.GetClients();
+            return _mapper.Map<IEnumerable<UserClient>, List<ReturnClientDto>>(users);
+        }
 
         public async Task<User> GetUser(Guid id)
             => await _userRepository.GetUserById(id);
@@ -95,5 +106,7 @@ namespace WebApi.UserDirectory
 
             return _jwtHandler.CreateToken(userFromDb);
         }
+
+
     }
 }
