@@ -28,7 +28,7 @@ namespace WebApi.UserDirectory
         }
 
         [Authorize(Policy = "admin")]
-        [HttpPost("registerAdmin")]
+        [HttpPost("admin/registerAdmin")]
         public async Task<IActionResult> AddAdmin([FromBody]AddUserDto userDto)
         {
             var a = CurrentUserId;
@@ -45,13 +45,13 @@ namespace WebApi.UserDirectory
                 token = token
             });
         }
-        [HttpGet("allUsers")]
+        [HttpGet("admin/allUsers")]
         public async Task<IActionResult> AllUsers()
         {
             var users = await _userService.GetUsers();
             return Ok(users);
         }
-        [HttpGet("allClients")]
+        [HttpGet("admin/allClients")]
         public async Task<IActionResult> AllClients()
         {
             var users = await _userService.GetClients();
@@ -63,6 +63,19 @@ namespace WebApi.UserDirectory
         {
             var users = await _userService.GetAdmins();
             return Ok(users);
+        }
+        [HttpPut("admin/update")]
+        public async Task<IActionResult> UpdateByAdmin([FromBody] UpdateUserDtoByAdmin user)
+        {
+            var a = user;
+            return Ok("temp");
+        }
+
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateYourself([FromBody] UpdateUserDto user)
+        {
+            var a = user;
+            return Ok("temp");
         }
     }
 }

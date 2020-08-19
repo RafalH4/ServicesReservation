@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace WebApi.UserDirectory.Dto
 {
-    public class UpdateUserDto
+    public class UpdateUserDtoByAdmin
     {
+        public Guid Id { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string FirstName { get; set; }
