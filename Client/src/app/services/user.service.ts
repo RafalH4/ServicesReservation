@@ -28,4 +28,7 @@ export class UserService {
   getClients(): Observable<any>{
     return this.http.get(this.baseUrl+'admin/allClients')
   }
+  getUser(id: any): Observable<any>{
+    return this.http.get(this.baseUrl+'admin/user/'+id)
+  }
 }

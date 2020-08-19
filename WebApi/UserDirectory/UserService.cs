@@ -81,8 +81,11 @@ namespace WebApi.UserDirectory
             return _mapper.Map<IEnumerable<UserClient>, List<ReturnClientDto>>(users);
         }
 
-        public async Task<User> GetUser(Guid id)
-            => await _userRepository.GetUserById(id);
+        public async Task<ReturnUserDto> GetUser(Guid id)
+        {
+            var user = await _userRepository.GetUserById(id);
+            return _mapper.Map<User, ReturnUserDto>(user);
+        }
 
         public async Task RemoveUser(Guid id)
         {

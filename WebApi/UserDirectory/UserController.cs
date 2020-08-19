@@ -57,6 +57,12 @@ namespace WebApi.UserDirectory
             var users = await _userService.GetClients();
             return Ok(users);
         }
+        [HttpGet("admin/user/{id}")]
+        public async Task<IActionResult> GetUser(Guid id)
+        {
+            var user = await _userService.GetUser(id);
+            return Ok(user);
+        }
 
         [HttpGet("allProviders")]
         public async Task<IActionResult> allProviders()
