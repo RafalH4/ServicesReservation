@@ -53,6 +53,9 @@ namespace WebApi.UserDirectory
             {
                 Id = Guid.NewGuid(),
                 Email = userDto.Email,
+                FirstName = userDto.FirstName,
+                LastName = userDto.LastName,
+                PhoneNumber = userDto.PhoneNumber,
                 PasswordSalt = hmac.Key,
                 PasswordHash = hmac.ComputeHash(Encoding.ASCII.GetBytes(userDto.Password))
             };

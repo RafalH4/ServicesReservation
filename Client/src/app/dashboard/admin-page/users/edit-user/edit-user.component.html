@@ -1,1 +1,20 @@
-<p>edit-user works!</p>
+<h2>Edycja użytkownika</h2>
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <label>
+        Imię:
+        <input type="text" formControlName="firstName">
+    </label>
+    <label>
+        Nazwisko:
+        <input type="text" formControlName="lastName">
+    </label>
+    <label>
+        Numer telefonu:
+        <input type="text" formControlName="phoneNumber">
+    </label>
+    <label>
+        Email:
+        <input type="text" formControlName="email">
+    </label>
+    <button type="submit">Akceptuj</button>
+</form>
