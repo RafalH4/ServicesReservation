@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'users', component: UsersComponent,
     children: [
       { path: '', redirectTo: 'all', pathMatch: 'full' },
-      { path: 'edit', component: EditUserComponent },
+      { path: 'edit/:id', component: EditUserComponent },
       { path: 'new', component: AddUserComponent },
       { path: 'all', component: AllUsersComponent },
     ]
