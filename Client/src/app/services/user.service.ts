@@ -17,7 +17,15 @@ export class UserService {
     return this.http.post(this.baseUrl+'registerClient', user)
   }
 
+  getUsers(): Observable<any>{
+    return this.http.get(this.baseUrl+'admin/allUsers')
+  }
+
   getProviders(): Observable<any>{
-    return this.http.get(this.baseUrl+'allUsers')
+    return this.http.get(this.baseUrl+'allProviders')
+  }
+
+  getClients(): Observable<any>{
+    return this.http.get(this.baseUrl+'admin/allClients')
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProvidersService } from 'src/app/services/providers.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-all-users',
@@ -9,10 +9,10 @@ import { ProvidersService } from 'src/app/services/providers.service';
 export class AllUsersComponent implements OnInit {
 
   users: any[];
-  constructor(private _providersService: ProvidersService) { }
+  constructor(private _userService: UserService) { }
 
   ngOnInit(): void {
-    this._providersService.getProviders().subscribe(resp => {
+    this._userService.getUsers().subscribe(resp => {
       this.users = resp;
       console.log(resp)
     })

@@ -4,14 +4,18 @@ class="mainTable">
         <td><h3>Lp</h3></td>
         <td><h3>Imię</h3></td>
         <td><h3>Nazwisko</h3></td>
+        <td><h3>Numer telefonu</h3></td>
+        <td><h3>Email</h3></td>
         <td><h3>rola</h3></td>
         <td><h3>akcja</h3></td>
     </tr>
-        <tr *ngFor="let user of users">
+        <tr *ngFor="let user of users; let i = index ">
+            <td>{{i+1}}</td>
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.phoneNumber}}</td>
             <td>{{user.email}}</td>
-            <td>Imię</td>
-            <td>Nazwisko</td>
-            <td>rola</td>
+            <td>{{user.role}}</td>
             <td>
                 <a href="">Edytuj</a>
                 <a href="">Usuń</a>
