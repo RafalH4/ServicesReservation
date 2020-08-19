@@ -36,4 +36,7 @@ export class UserService {
   updateUser(user: any): Observable<any>{
     return this.http.put(this.baseUrl+'admin/update', user)
   }
+  deleteUser(id: any): Observable<any>{
+    return this.http.delete(this.baseUrl+'delete/'+id)
+  }
 }

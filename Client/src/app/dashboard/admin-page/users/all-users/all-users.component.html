@@ -17,7 +17,8 @@ class="mainTable">
             <td>{{user.email}}</td>
             <td>{{user.role}}</td>
             <td>
-                <a routerLink="../edit/{{user.id}}">Edytuj</a>
+                <button routerLink="../edit/{{user.id}}">Edytuj</button>
+                <button (click)="onDeleteUser(user.id)">Usuń</button>
             </td>
         </tr>
 </table>

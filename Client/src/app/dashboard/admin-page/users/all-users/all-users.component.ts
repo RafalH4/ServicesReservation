@@ -17,5 +17,11 @@ export class AllUsersComponent implements OnInit {
       console.log(resp)
     })
   }
+  onDeleteUser(id){
+    this._userService.deleteUser(id).subscribe(
+      data=>console.log(data),
+      err=>console.log(err)
+    )
+  }
 
 }

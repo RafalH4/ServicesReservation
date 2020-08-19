@@ -83,5 +83,11 @@ namespace WebApi.UserDirectory
             var a = user;
             return Ok("temp");
         }
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            await _userService.RemoveUser(id);
+            return Ok("deleted");
+        }
     }
 }
