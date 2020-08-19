@@ -73,7 +73,7 @@ namespace WebApi.UserDirectory
         [HttpPut("admin/update")]
         public async Task<IActionResult> UpdateByAdmin([FromBody] UpdateUserDtoByAdmin user)
         {
-            var a = user;
+            await _userService.UpdateUser(user);
             return Ok("temp");
         }
 

@@ -11,6 +11,7 @@ namespace WebApi.UserDirectory
         Task AddClient(AddUserDto userDto);
         Task AddAdmin(AddUserDto userDto);
         Task RemoveUser(Guid id);
+        Task UpdateUser(UpdateUserDtoByAdmin userDto);
         Task UpdateUser(UpdateUserDto userDto);
         Task ChangePassword(ChangePasswordDto password);
         Task<ReturnUserDto> GetUser(Guid id);

@@ -96,7 +96,19 @@ namespace WebApi.UserDirectory
             if (user != null)
                 await _userRepository.RemoveUser(user);
         }
-
+        public async Task UpdateUser(UpdateUserDtoByAdmin userDto)
+        {
+            var user = await _userRepository.GetUserById(userDto.Id);
+            if (user == null)
+                throw new Exception("Bad ID");
+            user.FirstName = userDto.FirstName;
+            user.LastName = userDto.LastName;
+            user.Email = userDto.Email;
+            user.PhoneNumber = userDto.PhoneNumber;
+            //Dorobić metodę, wysyłającą wiadomość na maila o zmianie i ew potwierdzenie
+            await _userRepository.UpdateUser(user);
+            
+        }
         public async Task UpdateUser(UpdateUserDto userDto)
         {
             throw new NotImplementedException();
