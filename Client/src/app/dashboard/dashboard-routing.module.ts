@@ -7,10 +7,10 @@ import { UsersComponent } from './admin-page/users/users.component';
 import { EditUserComponent } from './admin-page/users/edit-user/edit-user.component';
 import { AddUserComponent } from './admin-page/users/add-user/add-user.component';
 import { AllUsersComponent } from './admin-page/users/all-users/all-users.component';
-import { ItemsComponent } from '../pages/items/items.component';
 import { EditItemComponent } from './admin-page/items/edit-item/edit-item.component';
 import { AddItemComponent } from './admin-page/items/add-item/add-item.component';
 import { AllItemsComponent } from './admin-page/items/all-items/all-items.component';
+import { ItemsComponent } from './admin-page/items/items.component';
 
 
 const routes: Routes = [
