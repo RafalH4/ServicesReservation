@@ -7,6 +7,10 @@ import { UsersComponent } from './admin-page/users/users.component';
 import { EditUserComponent } from './admin-page/users/edit-user/edit-user.component';
 import { AddUserComponent } from './admin-page/users/add-user/add-user.component';
 import { AllUsersComponent } from './admin-page/users/all-users/all-users.component';
+import { ItemsComponent } from '../pages/items/items.component';
+import { EditItemComponent } from './admin-page/items/edit-item/edit-item.component';
+import { AddItemComponent } from './admin-page/items/add-item/add-item.component';
+import { AllItemsComponent } from './admin-page/items/all-items/all-items.component';
 
 
 const routes: Routes = [
@@ -19,7 +23,16 @@ const routes: Routes = [
       { path: 'new', component: AddUserComponent },
       { path: 'all', component: AllUsersComponent },
     ]
-  }
+  },
+  { path: 'items', component: ItemsComponent,
+    children: [
+      { path: '', redirectTo: 'all', pathMatch: 'full' },
+      { path: 'edit/:id', component: EditItemComponent },
+      { path: 'new', component: AddItemComponent },
+      { path: 'all', component: AllItemsComponent },
+
+    ]
+  },
 ]
 @NgModule({
   declarations: [],
