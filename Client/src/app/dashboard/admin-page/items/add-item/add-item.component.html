@@ -1,1 +1,13 @@
-<p>add-item works!</p>
+<h2>Dodaj usługę</h2>
+<form [formGroup]="newItem" (ngSubmit)="onSubmit()">
+    <label>
+        Nazwa usługi
+        <input type="text" formControlName="serviceName">
+    </label>
+    <label>
+        Czas trwania (min)
+        <input type="number" formControlName="durationInMinutes">
+    </label>
+    <button type="submit">Dodaj</button>
+
+</form>

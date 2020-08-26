@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemService } from 'src/app/services/item.service';
 
 @Component({
   selector: 'app-all-items',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllItemsComponent implements OnInit {
 
-  constructor() { }
+  items: any[]
+  constructor(private _itemService: ItemService) { }
 
   ngOnInit(): void {
+    this._itemService.getItems().subscribe(resp =>{
+      this.items = resp;
+      console.log(this.items)
+    })
+  }
+
+  onDeleteItem(id) {
+    console.log("Deleted "+id)
   }
 
 }

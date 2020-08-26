@@ -1,1 +1,20 @@
-<p>all-items works!</p>
+<h2>Wszystkie usługi</h2>
+
+<table 
+class="mainTable">
+    <tr>
+        <td><h3>Lp</h3></td>
+        <td><h3>Nazwa usługi</h3></td>
+        <td><h3>Czas trwania</h3></td>
+        <td><h3>Akcje</h3></td>
+    </tr>
+        <tr *ngFor="let item of items; let i = index ">
+            <td>{{i+1}}</td>
+            <td>{{item.serviceName}}</td>
+            <td>{{item.durationInMinutes}}</td>
+            <td>
+                <button routerLink="../edit/{{item.id}}">Edytuj</button>
+                <button (click)="onDeleteItem(item.id)">Usuń</button>
+            </td>
+        </tr>
+</table>
