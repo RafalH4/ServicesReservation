@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9UW+ZyM3BdnqMh9hcSZuxuJ1iPXJF+XxpDG8dBTAwXgJxrDr04cttN6XDPcMZjfH7+19Q6FR6GT5E7AiekFfIg==",
+  "dgSpecHash": "chZraO1TAnkZ+00mNNBlQftgVvIxNPnnCDtg9gPgC9d1qFamdEO25oAmlavJbpJ0804L9DyJgr5SwNKaZd8gnA==",
   "success": true,
-  "projectFilePath": "E:\\Projekty\\ServicesReservation\\WebApi\\WebApi.csproj",
+  "projectFilePath": "E:\\Projekty\\RezerwacjaUslug\\ServicesReservation\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rhuk\\.nuget\\packages\\automapper\\10.0.0\\automapper.10.0.0.nupkg.sha512",
     "C:\\Users\\rhuk\\.nuget\\packages\\microsoft.aspnet.webapi.client\\4.0.20710\\microsoft.aspnet.webapi.client.4.0.20710.nupkg.sha512",

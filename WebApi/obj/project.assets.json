@@ -9147,11 +9147,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Projekty\\ServicesReservation\\WebApi\\WebApi.csproj",
+      "projectUniqueName": "E:\\Projekty\\RezerwacjaUslug\\ServicesReservation\\WebApi\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "E:\\Projekty\\ServicesReservation\\WebApi\\WebApi.csproj",
+      "projectPath": "E:\\Projekty\\RezerwacjaUslug\\ServicesReservation\\WebApi\\WebApi.csproj",
       "packagesPath": "C:\\Users\\rhuk\\.nuget\\packages\\",
-      "outputPath": "E:\\Projekty\\ServicesReservation\\WebApi\\obj\\",
+      "outputPath": "E:\\Projekty\\RezerwacjaUslug\\ServicesReservation\\WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\rhuk\\AppData\\Roaming\\NuGet\\NuGet.Config",
