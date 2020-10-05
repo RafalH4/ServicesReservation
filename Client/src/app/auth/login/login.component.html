@@ -1,19 +1,17 @@
 login: test@o2.pl
 pass: test
-<form [formGroup]="form">
-    <fieldset>
-        <legend>Login</legend>
+<div class="loginContainer">
+    <form [formGroup]="form" class="loginForm">
         <div class="form-field">
-            <label>Email:</label>
-            <input name="email" formControlName="email">
+            <input class="inputField" name="email" formControlName="email" placeholder="Email">
         </div>
         <div class="form-field">
-            <label>Password:</label>
-            <input name="password" formControlName="password" type="password">
+            <input class="inputField" name="password" formControlName="password" type="password" placeholder="Hasło">
         </div>
-    </fieldset>
-    <div class="form-buttons">
-        <button class="button button-primary" (click)="login()">Zaloguj</button>
-        <button class="button button-primary" (click)="register()">Zarejestruj</button>
-    </div>
-</form>
+        <button class="loginButton" (click)="login()">Zaloguj</button>
+        <div class="registerSection">
+            Nie masz konta?
+            <a href="/register">Zarejestruj się</a>
+        </div>
+    </form>
+</div>
