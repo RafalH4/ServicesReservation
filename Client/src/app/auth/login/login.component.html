@@ -1,15 +1,11 @@
-login: test@o2.pl
-pass: test
 <div class="loginContainer">
+    <!-- login: test@o2.pl
+        pass: test -->
     <form [formGroup]="form" class="loginForm">
-        <div class="form-field">
-            <input class="inputField" name="email" formControlName="email" placeholder="Email">
-        </div>
-        <div class="form-field">
-            <input class="inputField" name="password" formControlName="password" type="password" placeholder="Hasło">
-        </div>
-        <button class="loginButton" (click)="login()">Zaloguj</button>
-        <div class="registerSection">
+        <input class="inputField item" name="email" formControlName="email" placeholder="Email">
+        <input class="inputField item" name="password" formControlName="password" type="password" placeholder="Hasło">
+        <button class="loginButton item" (click)="login()">Zaloguj</button>
+        <div class="registerPanel item">
             Nie masz konta?
             <a href="/register">Zarejestruj się</a>
         </div>
