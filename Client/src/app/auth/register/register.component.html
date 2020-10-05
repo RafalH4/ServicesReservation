@@ -1,25 +1,11 @@
-<form [formGroup]="form">
-    <fieldset>
-        <legend>Login</legend>
-        <div class="form-field">
-            <label>FirstName:</label>
-            <input name="firstName" formControlName="firstName">
-        </div>
-        <div class="form-field">
-            <label>LastName:</label>
-            <input name="lastName" formControlName="lastName">
-        </div>
-        <div class="form-field">
-            <label>Email:</label>
-            <input name="email" formControlName="email">
-        </div>
-        <div class="form-field">
-            <label>Password:</label>
-            <input name="password" formControlName="password" type="password">
-        </div>
-    </fieldset>
-    <div class="form-buttons">
-        <button (click)="register()">Register</button>
-    </div>
-    <button *ngIf="isAdmin()" (click)="registerAsAdmin()">Register as admin</button>
-</form>
+<div class="registerContainer">
+    <form [formGroup]="form" class="loginForm">
+        Rejestracja
+        <input class="inputField item" name="firstName" formControlName="firstName" placeholder="Imię">
+        <input class="inputField item" name="lastName" formControlName="lastName" placeholder="Nazwisko">
+        <input class="inputField item" name="email" formControlName="email" placeholder="Email">
+        <input class="inputField item" name="password" formControlName="password" type="password" placeholder="Hasło">
+        <button class="loginButton item" (click)="register()">Zarejestruj</button>
+        <button class="loginButton item" *ngIf="isAdmin()" (click)="registerAsAdmin()">Utwórz konto administratora</button>
+    </form>
+</div>
