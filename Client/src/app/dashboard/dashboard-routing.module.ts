@@ -11,10 +11,17 @@ import { EditItemComponent } from './admin-page/items/edit-item/edit-item.compon
 import { AddItemComponent } from './admin-page/items/add-item/add-item.component';
 import { AllItemsComponent } from './admin-page/items/all-items/all-items.component';
 import { ItemsComponent } from './admin-page/items/items.component';
+import { DutyRosterComponent } from './main-page/duty-roster/duty-roster.component';
+import { ServicesComponent } from './main-page/services/services.component';
 
 
 const routes: Routes = [
-  { path: '', component: MainPageComponent },
+  { path: '', component: MainPageComponent, 
+  children: [
+    {path: '', component: DutyRosterComponent, data: { id2: 'some data' }},
+    {path: 'duty-roster', component: DutyRosterComponent},
+    {path: 'services', component: ServicesComponent}
+  ] },
   { path: 'adminPage', component: AdminPageComponent },
   { path: 'users', component: UsersComponent,
     children: [

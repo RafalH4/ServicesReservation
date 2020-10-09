@@ -6,8 +6,8 @@
         </div>
         <div class="dashboardSidebar__nav">
             <ul>
-                <li><a href="/#">Grafik</a></li>
-                <li><a href="/#">Usługi</a></li>
+                <li><a routerLink="duty-roster">Grafik</a></li>
+                <li><a routerLink="services">Usługi</a></li>
                 <li><a href="/#">Pracownicy</a></li>
                 <li><a href="/#">Klienci</a></li>
                 <li class="logout_button"><a href="/#">Wyloguj</a></li>
@@ -16,7 +16,7 @@
     </div>
     <div class="dashboardContent">
         <div class="dashboardContent__header">
-            <h2>Tytuł Strony</h2>
+            <h2>{{title}}</h2>
             <div class="loggedAsTxt">
                 Zalogowany jako Jan Kowalski <button class="logoutButton" (click)="logout()" >Wyloguj się</button>
             </div>
@@ -24,26 +24,7 @@
         </div>
         <div class="dashboardContent__content">
             <div class="content__main">
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
-                <p>a</p>
+                <router-outlet></router-outlet>
             </div>
             <div class="content__footer">
                 Copyright by RafalH4. Email: r.huk@outlook.com

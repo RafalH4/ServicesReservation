@@ -14,12 +14,14 @@ import { ItemsComponent } from './admin-page/items/items.component';
 import { AddItemComponent } from './admin-page/items/add-item/add-item.component';
 import { AllItemsComponent } from './admin-page/items/all-items/all-items.component';
 import { EditItemComponent } from './admin-page/items/edit-item/edit-item.component';
+import { DutyRosterComponent } from './main-page/duty-roster/duty-roster.component';
+import { ServicesComponent } from './main-page/services/services.component';
 
 
 
 
 @NgModule({
-  declarations: [MainPageComponent, UserPageComponent, AdminPageComponent, UsersComponent, EditUserComponent, AddUserComponent, AllUsersComponent, ItemsComponent, AddItemComponent, AllItemsComponent, EditItemComponent],
+  declarations: [MainPageComponent, UserPageComponent, AdminPageComponent, UsersComponent, EditUserComponent, AddUserComponent, AllUsersComponent, ItemsComponent, AddItemComponent, AllItemsComponent, EditItemComponent, DutyRosterComponent, ServicesComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
