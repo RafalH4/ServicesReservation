@@ -16,12 +16,14 @@ import { AllItemsComponent } from './admin-page/items/all-items/all-items.compon
 import { EditItemComponent } from './admin-page/items/edit-item/edit-item.component';
 import { DutyRosterComponent } from './main-page/duty-roster/duty-roster.component';
 import { ServicesComponent } from './main-page/services/services.component';
+import { EmployeeComponent } from './main-page/employee/employee.component';
+import { ClientComponent } from './main-page/client/client.component';
 
 
 
 
 @NgModule({
-  declarations: [MainPageComponent, UserPageComponent, AdminPageComponent, UsersComponent, EditUserComponent, AddUserComponent, AllUsersComponent, ItemsComponent, AddItemComponent, AllItemsComponent, EditItemComponent, DutyRosterComponent, ServicesComponent],
+  declarations: [MainPageComponent, UserPageComponent, AdminPageComponent, UsersComponent, EditUserComponent, AddUserComponent, AllUsersComponent, ItemsComponent, AddItemComponent, AllItemsComponent, EditItemComponent, DutyRosterComponent, ServicesComponent, EmployeeComponent, ClientComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

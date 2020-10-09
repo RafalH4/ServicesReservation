@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { DashboardDataService } from 'src/app/services/dashboard-data.service';
 
 @Component({
-  selector: 'app-services',
-  templateUrl: './services.component.html',
-  styleUrls: ['./services.component.scss']
+  selector: 'app-client',
+  templateUrl: './client.component.html',
+  styleUrls: ['./client.component.scss']
 })
-export class ServicesComponent implements OnInit {
-  title="Świadczone usługi"
+export class ClientComponent implements OnInit {
+  title="Klienci"
 
   constructor(private dashboardData: DashboardDataService ) { }
 

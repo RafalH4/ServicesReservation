@@ -13,14 +13,18 @@ import { AllItemsComponent } from './admin-page/items/all-items/all-items.compon
 import { ItemsComponent } from './admin-page/items/items.component';
 import { DutyRosterComponent } from './main-page/duty-roster/duty-roster.component';
 import { ServicesComponent } from './main-page/services/services.component';
+import { EmployeeComponent } from './main-page/employee/employee.component';
+import { ClientComponent } from './main-page/client/client.component';
 
 
 const routes: Routes = [
   { path: '', component: MainPageComponent, 
   children: [
-    {path: '', component: DutyRosterComponent, data: { id2: 'some data' }},
+    {path: '', component: DutyRosterComponent},
     {path: 'duty-roster', component: DutyRosterComponent},
-    {path: 'services', component: ServicesComponent}
+    {path: 'services', component: ServicesComponent},
+    {path: 'employee', component: EmployeeComponent},
+    {path: 'clients', component: ClientComponent}
   ] },
   { path: 'adminPage', component: AdminPageComponent },
   { path: 'users', component: UsersComponent,

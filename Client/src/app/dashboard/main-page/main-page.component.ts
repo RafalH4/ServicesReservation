@@ -1,6 +1,7 @@
-import { AfterViewChecked, AfterViewInit, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, OnInit} from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { DashboardDataService } from 'src/app/services/dashboard-data.service';
+import { ChangeDetectorRef } from '@angular/core'
 
 @Component({
   selector: 'app-main-page',
@@ -10,17 +11,21 @@ import { DashboardDataService } from 'src/app/services/dashboard-data.service';
 export class MainPageComponent implements OnInit, AfterViewInit {
   title="Treść"
 
-  constructor(private authService: AuthService, private dashboardDataService: DashboardDataService) {
+  constructor(private authService: AuthService, private dashboardDataService: DashboardDataService, private cdr: ChangeDetectorRef) {
 
    }
   ngAfterViewInit(): void {
     this.dashboardDataService.getTitle().subscribe(data =>{
       this.title=data
-    })
+    }) 
   }
 
   ngOnInit(): void {
 
+  }
+  
+  ngAfterContentChecked() {
+    this.cdr.detectChanges();
   }
 
   logout(){
