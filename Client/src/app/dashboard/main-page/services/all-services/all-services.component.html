@@ -1,0 +1,21 @@
+<div>
+    <a routerLink="../add">Dodaj usługę</a>
+</div>
+<div>
+    <table>
+        <tr>
+            <th>Lp</th>
+            <th>Nazwa usługi</th>
+            <th>Czas trwania</th>
+            <th>Cena</th>
+            <th>Operacje</th>
+        </tr>
+        <tr *ngFor="let item of items; index as i">
+            <td>{{i+1}}</td>
+            <td>{{item.serviceName}}</td>
+            <td>{{item.durationInMinutes}}</td>
+            <td>{{item.time}}</td>
+            <td>Edytuj Usuń</td>
+        </tr>
+    </table>
+</div>

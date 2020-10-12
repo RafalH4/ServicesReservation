@@ -15,19 +15,30 @@ import { DutyRosterComponent } from './main-page/duty-roster/duty-roster.compone
 import { ServicesComponent } from './main-page/services/services.component';
 import { EmployeeComponent } from './main-page/employee/employee.component';
 import { ClientComponent } from './main-page/client/client.component';
+import { NewServiceItemComponent } from './main-page/services/new-service-item/new-service-item.component';
+import { AllServicesComponent } from './main-page/services/all-services/all-services.component';
 
 
 const routes: Routes = [
-  { path: '', component: MainPageComponent, 
-  children: [
-    {path: '', component: DutyRosterComponent},
-    {path: 'duty-roster', component: DutyRosterComponent},
-    {path: 'services', component: ServicesComponent},
-    {path: 'employee', component: EmployeeComponent},
-    {path: 'clients', component: ClientComponent}
-  ] },
+  {
+    path: '', component: MainPageComponent,
+    children: [
+      { path: '', component: DutyRosterComponent },
+      { path: 'duty-roster', component: DutyRosterComponent },
+      {
+        path: 'services', component: ServicesComponent,
+        children: [
+          {path: '', component: AllServicesComponent}, 
+          {path: 'add', component: NewServiceItemComponent}
+        ]
+      },
+      { path: 'employee', component: EmployeeComponent },
+      { path: 'clients', component: ClientComponent }
+    ]
+  },
   { path: 'adminPage', component: AdminPageComponent },
-  { path: 'users', component: UsersComponent,
+  {
+    path: 'users', component: UsersComponent,
     children: [
       { path: '', redirectTo: 'all', pathMatch: 'full' },
       { path: 'edit/:id', component: EditUserComponent },
@@ -35,7 +46,8 @@ const routes: Routes = [
       { path: 'all', component: AllUsersComponent },
     ]
   },
-  { path: 'items', component: ItemsComponent,
+  {
+    path: 'items', component: ItemsComponent,
     children: [
       { path: '', redirectTo: 'all', pathMatch: 'full' },
       { path: 'edit/:id', component: EditItemComponent },

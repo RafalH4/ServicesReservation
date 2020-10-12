@@ -11,6 +11,7 @@ export class ItemService {
   constructor(private http: HttpClient) { }
 
   addItem(item: any){
+    console.log(item)
     return this.http.post(this.baseUrl, item)
   }
 

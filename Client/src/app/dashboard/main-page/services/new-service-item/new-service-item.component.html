@@ -1,0 +1,10 @@
+<div>
+    <a routerLink="../">Wróć</a>
+</div>
+
+<form [formGroup]="form" >
+    <input name="serviceName" type="text" formControlName="serviceName" placeholder="Nazwa usługi">
+    <input name="durationInMinutes" type="number" formControlName="durationInMinutes" placeholder="Czas trwania usługi">
+    <!-- <input name="price" type="number" formControlName="price" placeholder="Cena usługi"> -->
+    <button class="loginButton item" (click)="addService()">Dodaj</button>
+</form>

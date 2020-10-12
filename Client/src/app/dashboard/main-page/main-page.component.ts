@@ -9,7 +9,7 @@ import { ChangeDetectorRef } from '@angular/core'
   styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent implements OnInit, AfterViewInit {
-  title="Treść"
+  title="Grafik świadczonych usług"
 
   constructor(private authService: AuthService, private dashboardDataService: DashboardDataService, private cdr: ChangeDetectorRef) {
 

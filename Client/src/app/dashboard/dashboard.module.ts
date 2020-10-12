@@ -18,12 +18,30 @@ import { DutyRosterComponent } from './main-page/duty-roster/duty-roster.compone
 import { ServicesComponent } from './main-page/services/services.component';
 import { EmployeeComponent } from './main-page/employee/employee.component';
 import { ClientComponent } from './main-page/client/client.component';
+import { NewServiceItemComponent } from './main-page/services/new-service-item/new-service-item.component';
+import { AllServicesComponent } from './main-page/services/all-services/all-services.component';
 
 
 
 
 @NgModule({
-  declarations: [MainPageComponent, UserPageComponent, AdminPageComponent, UsersComponent, EditUserComponent, AddUserComponent, AllUsersComponent, ItemsComponent, AddItemComponent, AllItemsComponent, EditItemComponent, DutyRosterComponent, ServicesComponent, EmployeeComponent, ClientComponent],
+  declarations: [
+    MainPageComponent, 
+    UserPageComponent, 
+    AdminPageComponent, 
+    UsersComponent, 
+    EditUserComponent, 
+    AddUserComponent, 
+    AllUsersComponent, 
+    ItemsComponent, 
+    AddItemComponent, 
+    AllItemsComponent, 
+    EditItemComponent, 
+    DutyRosterComponent, 
+    ServicesComponent, 
+    EmployeeComponent, 
+    ClientComponent, 
+    NewServiceItemComponent, AllServicesComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
