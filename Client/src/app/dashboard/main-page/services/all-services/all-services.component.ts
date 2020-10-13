@@ -18,4 +18,10 @@ export class AllServicesComponent implements OnInit {
     })
   }
 
+  remove(id){
+    this.itemService.remove(id).subscribe(resp =>{
+      console.log(resp)
+    })
+  }
+
 }

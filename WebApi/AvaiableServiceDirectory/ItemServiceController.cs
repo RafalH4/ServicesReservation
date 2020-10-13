@@ -45,13 +45,13 @@ namespace WebApi.AvaiableServiceDirectory
         public async Task<IActionResult> Update([FromBody] ItemService item)
         {
             await _itemServiceService.Update(item);
-            return Ok("Updated");
+            return NoContent();
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Remove(Guid id)
         {
             await _itemServiceService.Remove(id);
-            return Ok("Deleted");
+            return NoContent();
         }
     }
 }

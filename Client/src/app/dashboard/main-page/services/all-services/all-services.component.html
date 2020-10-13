@@ -15,7 +15,10 @@
             <td>{{item.serviceName}}</td>
             <td>{{item.durationInMinutes}}</td>
             <td>{{item.time}}</td>
-            <td>Edytuj Usuń</td>
+            <td>
+                Edytuj
+                <button (click)="remove(item.id)">Usuń</button>
+            </td>
         </tr>
     </table>
 </div>
