@@ -16,6 +16,9 @@ export class ItemService {
   getItems(): Observable<any>{
     return this.http.get(this.baseUrl+'all')
   }
+  get(id):Observable<any>{
+    return this.http.get(this.baseUrl+'id/'+id)
+  }
   remove(id: any){
     return this.http.delete(this.baseUrl+id)
   }

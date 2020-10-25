@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ItemService } from 'src/app/services/item.service';
 
 @Component({
@@ -10,9 +11,11 @@ import { ItemService } from 'src/app/services/item.service';
 export class NewServiceItemComponent implements OnInit {
 
   form: FormGroup;
-  FormData = new FormData()
+  formData = new FormData()
 
-  constructor(private fb: FormBuilder, private itemService: ItemService) { }
+  constructor(private fb: FormBuilder, 
+    private itemService: ItemService, 
+    private router: Router) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -24,8 +27,7 @@ export class NewServiceItemComponent implements OnInit {
 
   addService(){
     this.itemService.addItem(this.form.value).subscribe(resp=>{
-      console.log(resp)
+      this.router.navigate(["/admin/services"])
     })
   }
-
 }

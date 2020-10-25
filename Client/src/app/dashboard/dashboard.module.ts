@@ -20,6 +20,7 @@ import { EmployeeComponent } from './main-page/employee/employee.component';
 import { ClientComponent } from './main-page/client/client.component';
 import { NewServiceItemComponent } from './main-page/services/new-service-item/new-service-item.component';
 import { AllServicesComponent } from './main-page/services/all-services/all-services.component';
+import { EditServiceItemComponent } from './main-page/services/edit-service-item/edit-service-item.component';
 
 
 
@@ -41,7 +42,7 @@ import { AllServicesComponent } from './main-page/services/all-services/all-serv
     ServicesComponent, 
     EmployeeComponent, 
     ClientComponent, 
-    NewServiceItemComponent, AllServicesComponent],
+    NewServiceItemComponent, AllServicesComponent, EditServiceItemComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
