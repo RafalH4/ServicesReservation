@@ -21,7 +21,7 @@ namespace WebApi.AvaiableServiceDirectory
         public async Task<IActionResult> Add([FromBody] AddItemServiceDto item)
         {
             await _itemServiceService.Add(item);
-            return Ok("Created");
+            return Created("", item);
         }
         [HttpGet("All")]
         public async Task<IActionResult> Get()
